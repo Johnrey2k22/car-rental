@@ -98,6 +98,17 @@
 </div>
 </div>
 </nav>
+<div class="max-w-7xl mx-auto px-6 mt-4">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <div class="p-4 rounded-xl {% if category == 'error' %}bg-red-100 text-red-700{% else %}bg-green-100 text-green-700{% endif %} text-sm font-bold uppercase tracking-widest">
+            {{ message }}
+          </div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+</div>
 <main class="max-w-7xl mx-auto px-6 py-12">
 <form method="POST" class="flex flex-col lg:flex-row gap-10">
 <!-- Left Column: Form -->
@@ -209,4 +220,41 @@
 </aside>
 </form>
 </main>
+<script>
+    const pickupInput = document.getElementById('pickup_datetime');
+    const returnInput = document.getElementById('return_datetime');
+    const addonCheckboxes = document.querySelectorAll('input[name="addons"]');
+    const displayTotal = document.getElementById('display_total');
+    const dailyRate = {{ car.daily_rate }};
+
+    function calculateTotal() {
+        const pickup = new Date(pickupInput.value);
+        const returnDate = new Date(returnInput.value);
+
+        if (pickup && returnDate && returnDate > pickup) {
+            const diffTime = Math.abs(returnDate - pickup);
+            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) || 1;
+            
+            let addonsTotal = 0;
+            addonCheckboxes.forEach(cb => {
+                if (cb.checked) {
+                    // We'd ideally need the addon prices here too. 
+                    // For now let's just use a simplified version or pull from the DOM
+                    const priceLabel = cb.closest('label').querySelector('.text-on-primary-container').innerText;
+                    const price = parseInt(priceLabel.replace(/[^0-9]/g, ''));
+                    addonsTotal += price;
+                }
+            });
+
+            const total = (dailyRate + addonsTotal) * diffDays;
+            displayTotal.innerText = '₱' + total.toLocaleString();
+        } else {
+            displayTotal.innerText = '₱--';
+        }
+    }
+
+    pickupInput.addEventListener('change', calculateTotal);
+    returnInput.addEventListener('change', calculateTotal);
+    addonCheckboxes.forEach(cb => cb.addEventListener('change', calculateTotal));
+</script>
 </body></html>

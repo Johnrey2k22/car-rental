@@ -20,6 +20,15 @@ class Car(db.Model):
     is_available = db.Column(db.Boolean, default=True)
     description = db.Column(db.Text)
 
+    def is_available_for_dates(self, pickup_dt, return_dt):
+        overlap = Booking.query.filter(
+            Booking.car_id == self.id,
+            Booking.status != 'Cancelled',
+            Booking.pickup_datetime < return_dt,
+            Booking.return_datetime > pickup_dt
+        ).first()
+        return overlap is None
+
     def __repr__(self):
         return f'<Car {self.brand} {self.model}>'
 

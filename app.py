@@ -74,6 +74,15 @@ def booking(car_id):
             pickup_dt = datetime.strptime(request.form.get('pickup_datetime'), '%Y-%m-%dT%H:%M')
             return_dt = datetime.strptime(request.form.get('return_datetime'), '%Y-%m-%dT%H:%M')
             
+            if return_dt <= pickup_dt:
+                flash('Return date must be after pickup date.', 'error')
+                return render_template("booking_reservation.html", car=car, addons=addons)
+
+            # Check for overlapping bookings using model method
+            if not car.is_available_for_dates(pickup_dt, return_dt):
+                flash('Vehicle unavailable for these dates. Conflicting reservation found.', 'error')
+                return render_template("booking_reservation.html", car=car, addons=addons)
+
             # Calculate days (minimum 1 day)
             delta = return_dt - pickup_dt
             days = max(delta.days, 1)
