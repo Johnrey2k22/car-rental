@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>DriveEase PH — User Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@400;700;800;900&amp;family=Newsreader:ital,wght@0,400;0,700;1,400&amp;family=Inter:wght@400;500;600&amp;family=DM+Mono&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "on-surface": "#1a1c1c",
+                        "secondary": "#476083",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary-fixed": "#d4e3ff",
+                        "surface": "#f9f9f9",
+                        "tertiary-fixed": "#ffdfa0",
+                        "surface-container-highest": "#e2e2e2",
+                        "on-tertiary-fixed": "#261a00",
+                        "on-tertiary-fixed-variant": "#5c4300",
+                        "on-secondary": "#ffffff",
+                        "on-surface-variant": "#43474e",
+                        "error-container": "#ffdad6",
+                        "tertiary-container": "#291c00",
+                        "secondary-container": "#bdd6ff",
+                        "primary-fixed": "#ffdfa0",
+                        "inverse-surface": "#2f3131",
+                        "on-primary": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary-fixed-variant": "#2f486a",
+                        "surface-variant": "#e2e2e2",
+                        "inverse-on-surface": "#f1f1f1",
+                        "on-error-container": "#93000a",
+                        "on-primary-container": "#ab7f00",
+                        "on-error": "#ffffff",
+                        "surface-bright": "#f9f9f9",
+                        "outline": "#74777f",
+                        "on-secondary-fixed": "#001c3a",
+                        "surface-tint": "#795900",
+                        "on-background": "#1a1c1c",
+                        "surface-container-low": "#f3f3f3",
+                        "on-primary-fixed": "#261a00",
+                        "inverse-primary": "#fbbc00",
+                        "outline-variant": "#c4c6cf",
+                        "surface-container-high": "#e8e8e8",
+                        "primary-fixed-dim": "#fbbc00",
+                        "primary-container": "#2a1c00",
+                        "error": "#ba1a1a",
+                        "secondary-fixed-dim": "#afc8f0",
+                        "surface-container": "#eeeeee",
+                        "tertiary-fixed-dim": "#fbbc00",
+                        "background": "#f9f9f9",
+                        "on-secondary-container": "#445d80",
+                        "on-primary-fixed-variant": "#5c4300",
+                        "tertiary": "#090500",
+                        "primary": "#0a0500",
+                        "surface-dim": "#dadada",
+                        "on-tertiary-container": "#ab7f00"
+                    },
+                    fontFamily: {
+                        "headline": ["Epilogue"],
+                        "body": ["Newsreader"],
+                        "label": ["Inter"],
+                        "technical": ["DM Mono"]
+                    },
+                    borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .sidebar-active {
+            border-left: 4px solid #fbbc00;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface font-body text-on-surface flex min-h-screen">
+<!-- Left Sidebar (NavigationDrawer Shell) -->
+<aside class="w-[240px] bg-[#001F3F] text-white flex-shrink-0 flex flex-col fixed h-full z-40 overflow-y-auto">
+<!-- Profile Section -->
+<div class="p-8 flex flex-col items-center text-center">
+<div class="w-20 h-20 rounded-full bg-secondary-container mb-4 overflow-hidden border-2 border-[#fbbc00]">
+<img class="w-full h-full object-cover" data-alt="User profile picture of a male renter" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCMEcaBYq8I6YtStzk8gw06gG9Lce6tXes31M2KTBJcZ4S_10qaMgDvxCtY_PhquUixzJdH2hSL7URfpXPdjgnhiDRxesRyG3MYvSzP6gRG8_wUC1RVzcU6EJthg13K18uHLV3ZwzAu6eCWe11-LEzZfcMxRDzf8FPn8O0P5wrRclV9P9iK-vKOqvHgRYWUOmLopa1oRdvcRHyhso1uKFD_cMI54merVAh_P7w_J69K2gHj2DDSKhwm8fLK6WQ3RA3ogB3mQa4x0HrN"/>
+</div>
+<h2 class="font-headline font-bold text-lg tracking-tight">Gabriel Reyes</h2>
+<p class="font-label text-[10px] text-white/50 uppercase tracking-widest mb-2">gabriel.reyes@email.ph</p>
+<span class="inline-flex items-center px-3 py-1 bg-[#fbbc00] text-primary text-[10px] font-bold font-label rounded-full uppercase tracking-tighter">
+<span class="material-symbols-outlined text-[12px] mr-1" style="font-variation-settings: 'FILL' 1;">verified</span>
+                Verified Renter
+            </span>
+</div>
+<!-- Navigation Links -->
+<nav class="flex-grow mt-4">
+<ul class="space-y-1">
+<li>
+<a class="sidebar-active flex items-center px-6 py-4 bg-white/5 text-[#fbbc00] font-label text-sm transition-all group" href="#">
+<span class="material-symbols-outlined mr-3 group-hover:scale-110 transition-transform">directions_car</span>
+                        My Bookings
+                    </a>
+</li>
+<li>
+<a class="flex items-center px-6 py-4 text-white/70 hover:text-white hover:bg-white/5 font-label text-sm transition-all group" href="#">
+<span class="material-symbols-outlined mr-3 group-hover:scale-110 transition-transform">person</span>
+                        Profile
+                    </a>
+</li>
+<li>
+<a class="flex items-center px-6 py-4 text-white/70 hover:text-white hover:bg-white/5 font-label text-sm transition-all group" href="#">
+<span class="material-symbols-outlined mr-3 group-hover:scale-110 transition-transform">payments</span>
+                        Payments
+                    </a>
+</li>
+<li>
+<a class="flex items-center justify-between px-6 py-4 text-white/70 hover:text-white hover:bg-white/5 font-label text-sm transition-all group" href="#">
+<div class="flex items-center">
+<span class="material-symbols-outlined mr-3 group-hover:scale-110 transition-transform">notifications</span>
+                            Notifications
+                        </div>
+<span class="bg-error text-white text-[10px] font-bold px-2 py-0.5 rounded-full">3</span>
+</a>
+</li>
+<li>
+<a class="flex items-center px-6 py-4 text-white/70 hover:text-white hover:bg-white/5 font-label text-sm transition-all group" href="#">
+<span class="material-symbols-outlined mr-3 group-hover:scale-110 transition-transform">rate_review</span>
+                        Reviews
+                    </a>
+</li>
+<li>
+<a class="flex items-center px-6 py-4 text-white/70 hover:text-white hover:bg-white/5 font-label text-sm transition-all group" href="#">
+<span class="material-symbols-outlined mr-3 group-hover:scale-110 transition-transform">help</span>
+                        Help &amp; Support
+                    </a>
+</li>
+</ul>
+</nav>
+<!-- Logout -->
+<div class="mt-auto p-6">
+<a class="flex items-center text-error hover:text-error/80 font-label text-sm font-semibold transition-colors group" href="#">
+<span class="material-symbols-outlined mr-3 group-hover:translate-x-1 transition-transform">logout</span>
+                Log Out
+            </a>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-grow ml-[240px] bg-surface-container-low min-h-screen">
+<!-- Top Navigation (Hybrid Shell) -->
+<header class="bg-surface/80 backdrop-blur-xl px-10 py-6 sticky top-0 z-30 flex justify-between items-center shadow-sm">
+<div>
+<h1 class="font-headline font-black text-2xl text-primary tracking-tighter uppercase">DriveEase PH</h1>
+<p class="font-body italic text-on-surface-variant text-sm">Welcome back, Gabriel. Your fleet awaits.</p>
+</div>
+<button class="bg-primary text-white font-label font-bold px-8 py-3 rounded-full hover:bg-primary/90 transition-all flex items-center gap-2 text-sm tracking-widest uppercase">
+<span class="material-symbols-outlined text-lg">add_circle</span>
+                BOOK A CAR
+            </button>
+</header>
+<div class="p-10 space-y-10 max-w-7xl mx-auto">
+<!-- Stat Cards Section -->
+<section class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Stat Card 1 -->
+<div class="bg-surface-container-lowest p-6 rounded-xl border-t-4 border-[#fbbc00] shadow-[0_4px_20px_rgba(0,0,0,0.02)]">
+<p class="font-label text-[10px] uppercase tracking-[0.2em] text-on-surface-variant mb-2">Total Rentals</p>
+<div class="flex items-baseline gap-2">
+<span class="font-headline font-black text-4xl text-primary">12</span>
+<span class="text-on-primary-container text-xs font-semibold">+2 this month</span>
+</div>
+</div>
+<!-- Stat Card 2 -->
+<div class="bg-surface-container-lowest p-6 rounded-xl shadow-[0_4px_20px_rgba(0,0,0,0.02)]">
+<p class="font-label text-[10px] uppercase tracking-[0.2em] text-on-surface-variant mb-2">Active Now</p>
+<div class="flex items-baseline gap-2">
+<span class="font-headline font-black text-4xl text-primary">01</span>
+<span class="text-secondary text-xs font-semibold">Premium SUV</span>
+</div>
+</div>
+<!-- Stat Card 3 -->
+<div class="bg-surface-container-lowest p-6 rounded-xl shadow-[0_4px_20px_rgba(0,0,0,0.02)]">
+<p class="font-label text-[10px] uppercase tracking-[0.2em] text-on-surface-variant mb-2">Wallet Balance</p>
+<div class="flex items-baseline gap-2">
+<span class="font-headline font-black text-4xl text-primary">₱4,250</span>
+<span class="text-on-surface-variant text-xs font-semibold">Credits</span>
+</div>
+</div>
+</section>
+<!-- Active & Upcoming Focus Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-10">
+<!-- Active Bookings Table (2/3 width) -->
+<section class="lg:col-span-2 space-y-4">
+<div class="flex justify-between items-end mb-2">
+<h3 class="font-headline font-extrabold text-xl tracking-tight text-primary uppercase">Active Bookings</h3>
+<a class="font-label text-[10px] font-bold text-on-primary-container uppercase tracking-widest hover:underline" href="#">View All</a>
+</div>
+<div class="bg-surface-container-lowest rounded-2xl overflow-hidden shadow-sm">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-high font-label text-[10px] uppercase tracking-widest text-on-surface-variant">
+<th class="px-6 py-4 font-semibold">Vehicle</th>
+<th class="px-6 py-4 font-semibold">Duration</th>
+<th class="px-6 py-4 font-semibold">Status</th>
+<th class="px-6 py-4 font-semibold text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container">
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-6 py-6">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 bg-surface-container rounded-lg overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Land Rover Defender white" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAebHshNQHRTjLac0bNTMwppLw4TGyLgjWX_RXLlfnTqhEXw5g-JF3RlO1TADJ4IY4Dy0j4_lj3dJ3yiunLFqDJ4GIG3y5DlP8g2sQGXt5wewpx--yo55Tc7Xs9giIW0LsZNHf0-5lDTFy9zVO1D9epIEK4hCU1nW09w46aCGQdKSapwebY2qyR66kPtDd3RP5uTf_6HjKCSCW3U_TZrpGPSuT8EOoGbTkAvVC2eGjCVvBL5mrfEjU9Y1w_qy94l7OxyV9nS7cSZmS8"/>
+</div>
+<div>
+<p class="font-headline font-bold text-primary">Land Rover Defender</p>
+<p class="font-label text-[10px] text-on-surface-variant uppercase">SUV • Automatic</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-6">
+<p class="font-technical text-xs font-bold text-primary">OCT 24 - OCT 28</p>
+<p class="font-body italic text-xs text-on-surface-variant">Manila Int. Airport</p>
+</td>
+<td class="px-6 py-6">
+<span class="px-3 py-1 bg-secondary-container text-on-secondary-container rounded-full text-[10px] font-bold font-label uppercase">In Progress</span>
+</td>
+<td class="px-6 py-6 text-right space-x-2">
+<button class="font-label text-[10px] font-black text-primary hover:text-primary-fixed-dim uppercase tracking-widest">View</button>
+<button class="font-label text-[10px] font-black text-error hover:text-error/70 uppercase tracking-widest">Cancel</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<!-- Upcoming Return Widget (1/3 width) -->
+<section class="space-y-4">
+<h3 class="font-headline font-extrabold text-xl tracking-tight text-primary uppercase">Quick Actions</h3>
+<div class="bg-primary-container text-white p-8 rounded-3xl relative overflow-hidden group shadow-xl">
+<!-- Decorative glow -->
+<div class="absolute -top-10 -right-10 w-40 h-40 bg-primary-fixed-dim/20 rounded-full blur-3xl group-hover:scale-150 transition-transform duration-700"></div>
+<div class="relative z-10">
+<span class="font-label text-[10px] font-bold text-[#fbbc00] uppercase tracking-[0.3em] block mb-6">Upcoming Return</span>
+<h4 class="font-headline font-black text-2xl leading-tight mb-2">Land Rover Defender</h4>
+<p class="font-body italic text-white/70 mb-8">Return by Oct 28, 10:00 AM</p>
+<div class="mb-8">
+<div class="flex justify-between items-end mb-2">
+<p class="font-label text-[10px] uppercase text-white/50">Time Remaining</p>
+<p class="font-headline font-bold text-2xl text-[#fbbc00]">2 Days</p>
+</div>
+<div class="w-full bg-white/10 h-1.5 rounded-full overflow-hidden">
+<div class="bg-[#fbbc00] h-full w-[60%]"></div>
+</div>
+</div>
+<button class="w-full bg-[#fbbc00] text-primary font-label font-black text-[11px] tracking-widest uppercase py-4 rounded-xl hover:scale-[1.02] active:scale-95 transition-all shadow-lg shadow-[#fbbc00]/10">
+                                Extend Rental
+                            </button>
+</div>
+</div>
+</section>
+</div>
+<!-- Booking History Section -->
+<section class="space-y-4">
+<div class="flex justify-between items-end mb-2">
+<h3 class="font-headline font-extrabold text-xl tracking-tight text-primary uppercase">Booking History</h3>
+</div>
+<div class="bg-surface-container-lowest rounded-2xl overflow-hidden shadow-sm">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-high font-label text-[10px] uppercase tracking-widest text-on-surface-variant">
+<th class="px-6 py-4 font-semibold">Vehicle</th>
+<th class="px-6 py-4 font-semibold">Dates</th>
+<th class="px-6 py-4 font-semibold text-center">Amount</th>
+<th class="px-6 py-4 font-semibold">Status</th>
+<th class="px-6 py-4 font-semibold text-right">Documents</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container">
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-6 py-6">
+<div class="flex items-center gap-3">
+<p class="font-headline font-bold text-primary">Porsche 911 Carrera</p>
+</div>
+</td>
+<td class="px-6 py-6">
+<p class="font-technical text-xs text-on-surface-variant">SEP 12 - SEP 15, 2024</p>
+</td>
+<td class="px-6 py-6 text-center">
+<p class="font-technical text-xs font-bold">₱42,000</p>
+</td>
+<td class="px-6 py-6">
+<span class="px-3 py-1 bg-surface-container-highest text-on-surface-variant rounded-full text-[10px] font-bold font-label uppercase">Completed</span>
+</td>
+<td class="px-6 py-6 text-right">
+<button class="inline-flex items-center gap-2 font-label text-[10px] font-black text-primary hover:text-on-primary-container uppercase tracking-widest">
+<span class="material-symbols-outlined text-sm">receipt_long</span>
+                                        Receipt
+                                    </button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-6 py-6">
+<div class="flex items-center gap-3">
+<p class="font-headline font-bold text-primary">Tesla Model 3</p>
+</div>
+</td>
+<td class="px-6 py-6">
+<p class="font-technical text-xs text-on-surface-variant">AUG 05 - AUG 07, 2024</p>
+</td>
+<td class="px-6 py-6 text-center">
+<p class="font-technical text-xs font-bold">₱18,500</p>
+</td>
+<td class="px-6 py-6">
+<span class="px-3 py-1 bg-surface-container-highest text-on-surface-variant rounded-full text-[10px] font-bold font-label uppercase">Completed</span>
+</td>
+<td class="px-6 py-6 text-right">
+<button class="inline-flex items-center gap-2 font-label text-[10px] font-black text-primary hover:text-on-primary-container uppercase tracking-widest">
+<span class="material-symbols-outlined text-sm">receipt_long</span>
+                                        Receipt
+                                    </button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</div>
+<!-- Footer Shell (Minified for Dashboard) -->
+<footer class="bg-primary text-white py-8 px-10 mt-10 border-t border-white/5">
+<div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+<p class="font-technical text-[10px] tracking-[0.2em] text-white/40 uppercase">© 2024 DRIVE-EASE PH. CURATED MOBILITY.</p>
+<div class="flex gap-8">
+<a class="font-technical text-[10px] tracking-[0.2em] text-white/40 hover:text-[#fbbc00] uppercase transition-colors" href="#">How it Works</a>
+<a class="font-technical text-[10px] tracking-[0.2em] text-white/40 hover:text-[#fbbc00] uppercase transition-colors" href="#">Concierge</a>
+<a class="font-technical text-[10px] tracking-[0.2em] text-white/40 hover:text-[#fbbc00] uppercase transition-colors" href="#">Legal</a>
+</div>
+</div>
+</footer>
+</main>
+<!-- Bottom Nav for Mobile visibility (Suppressed in Desktop via sidebar) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full bg-[#001F3F]/95 backdrop-blur-lg z-50 flex justify-around items-center px-4 pb-6 pt-2 text-[#fbbc00] shadow-[0_-10px_30px_rgba(0,31,63,0.08)]">
+<a class="flex flex-col items-center justify-center p-2 opacity-100" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">explore</span>
+<span class="font-label text-[9px] uppercase tracking-tighter mt-1">Explore</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-[#2a1c00] text-[#fbbc00] rounded-full px-5 py-2" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">directions_car</span>
+<span class="font-label text-[9px] uppercase tracking-tighter mt-1">Bookings</span>
+</a>
+<a class="flex flex-col items-center justify-center p-2 opacity-60" href="#">
+<span class="material-symbols-outlined">chat_bubble</span>
+<span class="font-label text-[9px] uppercase tracking-tighter mt-1">Inbox</span>
+</a>
+<a class="flex flex-col items-center justify-center p-2 opacity-60" href="#">
+<span class="material-symbols-outlined">account_circle</span>
+<span class="font-label text-[9px] uppercase tracking-tighter mt-1">Profile</span>
+</a>
+</nav>
+</body></html>

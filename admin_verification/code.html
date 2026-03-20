@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@400;700;800;900&amp;family=Newsreader:ital,wght@0,400;0,700;1,400&amp;family=Inter:wght@400;500;600&amp;family=DM+Mono&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-surface": "#1a1c1c",
+              "secondary": "#476083",
+              "surface-container-lowest": "#ffffff",
+              "secondary-fixed": "#d4e3ff",
+              "surface": "#f9f9f9",
+              "tertiary-fixed": "#ffdfa0",
+              "surface-container-highest": "#e2e2e2",
+              "on-tertiary-fixed": "#261a00",
+              "on-tertiary-fixed-variant": "#5c4300",
+              "on-secondary": "#ffffff",
+              "on-surface-variant": "#43474e",
+              "error-container": "#ffdad6",
+              "tertiary-container": "#291c00",
+              "secondary-container": "#bdd6ff",
+              "primary-fixed": "#ffdfa0",
+              "inverse-surface": "#2f3131",
+              "on-primary": "#ffffff",
+              "on-tertiary": "#ffffff",
+              "on-secondary-fixed-variant": "#2f486a",
+              "surface-variant": "#e2e2e2",
+              "inverse-on-surface": "#f1f1f1",
+              "on-error-container": "#93000a",
+              "on-primary-container": "#ab7f00",
+              "on-error": "#ffffff",
+              "surface-bright": "#f9f9f9",
+              "outline": "#74777f",
+              "on-secondary-fixed": "#001c3a",
+              "surface-tint": "#795900",
+              "on-background": "#1a1c1c",
+              "surface-container-low": "#f3f3f3",
+              "on-primary-fixed": "#261a00",
+              "inverse-primary": "#fbbc00",
+              "outline-variant": "#c4c6cf",
+              "surface-container-high": "#e8e8e8",
+              "primary-fixed-dim": "#fbbc00",
+              "primary-container": "#2a1c00",
+              "error": "#ba1a1a",
+              "secondary-fixed-dim": "#afc8f0",
+              "surface-container": "#eeeeee",
+              "tertiary-fixed-dim": "#fbbc00",
+              "background": "#f9f9f9",
+              "on-secondary-container": "#445d80",
+              "on-primary-fixed-variant": "#5c4300",
+              "tertiary": "#090500",
+              "primary": "#0a0500",
+              "surface-dim": "#dadada",
+              "on-tertiary-container": "#ab7f00"
+            },
+            fontFamily: {
+              "headline": ["Epilogue"],
+              "body": ["Newsreader"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .amber-glow-btn {
+            background: linear-gradient(135deg, #fbbc00 0%, #ab7f00 100%);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface font-body selection:bg-primary-fixed selection:text-on-primary-fixed min-h-screen">
+<!-- TopAppBar -->
+<header class="bg-[#f9f9f9]/80 backdrop-blur-xl docked full-width top-0 sticky z-50 shadow-[0_20px_40px_rgba(0,31,63,0.06)]">
+<div class="flex justify-between items-center w-full px-6 py-4 max-w-7xl mx-auto">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-[#001F3F] cursor-pointer">menu</span>
+<h1 class="text-2xl font-black tracking-tighter text-[#001F3F] font-headline uppercase">DriveEase PH</h1>
+</div>
+<div class="hidden md:flex items-center gap-8">
+<nav class="flex gap-6 font-headline font-bold tracking-tight uppercase text-xs">
+<a class="text-[#001F3F]/60 hover:text-[#001F3F] transition-colors" href="#">Fleet</a>
+<a class="text-[#fbbc00] font-bold" href="#">Verifications</a>
+<a class="text-[#001F3F]/60 hover:text-[#001F3F] transition-colors" href="#">Bookings</a>
+</nav>
+<button class="bg-[#001F3F] text-white px-6 py-2 rounded-full font-headline font-bold text-xs tracking-widest hover:bg-[#002a54] transition-all">BOOK A CAR</button>
+</div>
+</div>
+</header>
+<main class="max-w-7xl mx-auto px-6 py-10 pb-24">
+<!-- Breadcrumb & Nav -->
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
+<nav class="flex items-center gap-2 text-on-surface-variant font-label text-xs tracking-wider uppercase">
+<span>Admin</span>
+<span class="material-symbols-outlined text-sm">chevron_right</span>
+<span>Verifications</span>
+<span class="material-symbols-outlined text-sm">chevron_right</span>
+<span class="text-primary font-bold">Review #VRF-9281</span>
+</nav>
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-2 bg-surface-container-low px-4 py-2 rounded-full">
+<span class="material-symbols-outlined text-primary-fixed-dim text-lg">pending_actions</span>
+<span class="font-label text-xs font-bold text-on-surface">4 OF 4 PENDING</span>
+</div>
+<div class="flex gap-2">
+<button class="p-2 rounded-full bg-white shadow-sm border-none hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<button class="p-2 rounded-full bg-white shadow-sm border-none hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Title Section -->
+<div class="mb-10 flex items-end gap-4">
+<h2 class="text-5xl font-headline font-extrabold tracking-tighter text-primary">License Review</h2>
+<span class="mb-2 px-4 py-1 bg-primary-container text-on-primary-container font-label text-[10px] font-black uppercase tracking-[0.2em] rounded-full">Pending Review</span>
+</div>
+<!-- Main Content Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+<!-- Left Column: Image Analysis -->
+<div class="space-y-10">
+<!-- Front Side Card -->
+<div class="bg-surface-container-low rounded-xl overflow-hidden">
+<div class="px-6 py-4 flex justify-between items-center bg-white/50 border-b border-outline-variant/10">
+<span class="font-headline font-bold text-sm tracking-tight text-primary uppercase">Front Side</span>
+<div class="flex items-center gap-2 px-3 py-1 bg-secondary-container/30 text-on-secondary-container rounded-full text-[10px] font-bold uppercase tracking-wider">
+<span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                            AI Passed
+                        </div>
+</div>
+<div class="p-6">
+<div class="aspect-[1.586/1] w-full bg-surface-dim relative rounded-lg overflow-hidden group mb-6">
+<img class="w-full h-full object-cover grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500" data-alt="Close up of a Philippine driver license card front side" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBXhzE5qu8ulWaBy5nun7xRQjMwXI9W-jcs5Dn6zTMrspAW1ErcqN5JULnLWhTwZjsi2yxdMnEWv3A9w8-eOTkDkTbWw47D7y2GNMc-oETE7QZb5_6JdhzBu2X_23JVHPXqrTfbenCd2Ouoq2MXe_9pOjRLSeHfOCujczWuHTk6mWYEArq185geIad6RYF3sAGCLD1aiAferUJu6fsTUBvBOeudjcQXjUuYAFuBZA-M6LHn0GHT0O7as4NHLbbLigr5gAqvZybPDhUG"/>
+<div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+<span class="bg-primary/80 backdrop-blur-md text-white px-3 py-1 font-label text-[10px] tracking-widest uppercase">CR80 • 1.586:1</span>
+</div>
+</div>
+<div class="flex flex-wrap gap-2">
+<span class="px-3 py-1 bg-white text-on-secondary-fixed-variant text-[10px] font-bold uppercase tracking-tighter rounded-full">Blur: 0.92 (PASS)</span>
+<span class="px-3 py-1 bg-white text-on-secondary-fixed-variant text-[10px] font-bold uppercase tracking-tighter rounded-full">Aspect: OK</span>
+<span class="px-3 py-1 bg-white text-on-secondary-fixed-variant text-[10px] font-bold uppercase tracking-tighter rounded-full">Template: 98%</span>
+<span class="px-3 py-1 bg-white text-on-secondary-fixed-variant text-[10px] font-bold uppercase tracking-tighter rounded-full">Contours: DETECTED</span>
+</div>
+</div>
+</div>
+<!-- Back Side Card -->
+<div class="bg-surface-container-low rounded-xl overflow-hidden">
+<div class="px-6 py-4 flex justify-between items-center bg-white/50 border-b border-outline-variant/10">
+<span class="font-headline font-bold text-sm tracking-tight text-primary uppercase">Back Side</span>
+<div class="flex items-center gap-2 px-3 py-1 bg-error-container/40 text-on-error-container rounded-full text-[10px] font-bold uppercase tracking-wider">
+<span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">warning</span>
+                            Signal Flag
+                        </div>
+</div>
+<div class="p-6">
+<div class="aspect-[1.586/1] w-full bg-surface-dim relative rounded-lg overflow-hidden group mb-6">
+<img class="w-full h-full object-cover grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500" data-alt="Close up of a Philippine driver license card back side" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAZ8pYfamX36FGbuW_z8slh122h6kDdPmNQK648ASbJgyG5zFWvfJnI7onNlbQoHpdLDWKWH4Py_wXoLCDY7ub-ipXZQa6PQNbS0yDDDLfPd2EMtFrK7JILvQZFxxbxJixS1zsiLLWaIDaKkqjHdt3Iqmz1RfbqMQX3VxxloMybofh2c_LVATlhTLJ2E4vgvQd4Dyyo8lAL8TGnaSe3_ufIY_YtJs6wV5C-c3BFBwbUjKwyf5tmvlBa4DUd1rVOjgNlAaSaRD7J11tq"/>
+<div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+<span class="bg-primary/80 backdrop-blur-md text-white px-3 py-1 font-label text-[10px] tracking-widest uppercase">CR80 • 1.586:1</span>
+</div>
+</div>
+<div class="flex flex-wrap gap-2">
+<span class="px-3 py-1 bg-white text-on-secondary-fixed-variant text-[10px] font-bold uppercase tracking-tighter rounded-full">Blur: 0.88 (PASS)</span>
+<span class="px-3 py-1 bg-white text-on-secondary-fixed-variant text-[10px] font-bold uppercase tracking-tighter rounded-full text-error">Aspect: MISMATCH</span>
+<span class="px-3 py-1 bg-white text-on-secondary-fixed-variant text-[10px] font-bold uppercase tracking-tighter rounded-full">Barcode: READABLE</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Results & Action -->
+<div class="space-y-10">
+<!-- OCR Fields Card -->
+<div class="bg-surface-container-lowest rounded-xl p-8 shadow-[0_10px_30px_rgba(0,31,63,0.04)]">
+<h3 class="font-headline font-bold text-xs uppercase tracking-[0.2em] text-primary mb-8">OCR Extracted Fields</h3>
+<div class="grid grid-cols-2 gap-y-6 gap-x-4">
+<div>
+<label class="block font-label text-[10px] text-on-surface-variant font-bold uppercase tracking-widest mb-1">Full Name</label>
+<p class="font-body italic text-lg text-primary">JUAN SEBASTIAN DE LA CRUZ</p>
+</div>
+<div>
+<label class="block font-label text-[10px] text-on-surface-variant font-bold uppercase tracking-widest mb-1">License Number</label>
+<p class="font-body italic text-lg text-primary">N02-15-******</p>
+</div>
+<div>
+<label class="block font-label text-[10px] text-on-surface-variant font-bold uppercase tracking-widest mb-1">Date of Birth</label>
+<p class="font-body italic text-lg text-primary">12 OCTOBER 1992</p>
+</div>
+<div>
+<label class="block font-label text-[10px] text-on-surface-variant font-bold uppercase tracking-widest mb-1">Expiry Date</label>
+<p class="font-body italic text-lg text-[#ab7f00] font-bold">24 NOVEMBER 2024</p>
+</div>
+<div>
+<label class="block font-label text-[10px] text-on-surface-variant font-bold uppercase tracking-widest mb-1">LTO Region</label>
+<p class="font-body italic text-lg text-primary">NCR - METRO MANILA</p>
+</div>
+<div>
+<label class="block font-label text-[10px] text-on-surface-variant font-bold uppercase tracking-widest mb-1">License Code</label>
+<p class="font-body italic text-lg text-primary">B, B1, B2 (MT/AT)</p>
+</div>
+</div>
+</div>
+<!-- AI Verification Result Card -->
+<div class="bg-surface-container-lowest rounded-xl p-8 shadow-[0_10px_30px_rgba(0,31,63,0.04)]">
+<h3 class="font-headline font-bold text-xs uppercase tracking-[0.2em] text-primary mb-8">AI Verification Result</h3>
+<div class="flex items-start gap-4 p-4 bg-tertiary-fixed rounded-xl mb-8">
+<span class="material-symbols-outlined text-on-tertiary-fixed text-4xl" style="font-variation-settings: 'FILL' 1;">privacy_tip</span>
+<div>
+<div class="flex items-center gap-2 mb-1">
+<span class="font-headline font-black text-xl text-on-tertiary-fixed uppercase italic">Suspicious</span>
+</div>
+<p class="text-sm font-body text-on-tertiary-fixed-variant leading-tight">Image metadata suggests potential editing or non-standard device capture. Manual cross-referencing required.</p>
+</div>
+</div>
+<div class="space-y-6 mb-8">
+<div>
+<div class="flex justify-between text-[10px] font-label font-bold uppercase tracking-widest text-on-surface-variant mb-2">
+<span>Overall Confidence</span>
+<span>74%</span>
+</div>
+<div class="h-1.5 w-full bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-primary-fixed-dim rounded-full" style="width: 74%"></div>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-6">
+<div>
+<div class="flex justify-between text-[10px] font-label font-bold uppercase tracking-widest text-on-surface-variant mb-2">
+<span>Template</span>
+<span>91%</span>
+</div>
+<div class="h-1 w-full bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-secondary rounded-full" style="width: 91%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between text-[10px] font-label font-bold uppercase tracking-widest text-on-surface-variant mb-2">
+<span>OCR Accuracy</span>
+<span>82%</span>
+</div>
+<div class="h-1 w-full bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-secondary rounded-full" style="width: 82%"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-[#ffdfa0]/30 border-l-4 border-primary-fixed-dim p-4 rounded-r-lg mb-8">
+<label class="block text-[10px] font-label font-bold uppercase tracking-widest text-on-tertiary-fixed-variant mb-2">Detected Flags</label>
+<ul class="space-y-2">
+<li class="flex items-center gap-2 text-sm text-on-tertiary-fixed-variant">
+<span class="material-symbols-outlined text-base">report</span>
+<span>Potential EXIF data manipulation detected.</span>
+</li>
+<li class="flex items-center gap-2 text-sm text-on-tertiary-fixed-variant">
+<span class="material-symbols-outlined text-base">report</span>
+<span>LTO Barcode format slightly deviates from standard.</span>
+</li>
+</ul>
+</div>
+<div class="pt-6 border-t border-outline-variant/10">
+<label class="block text-[10px] font-label font-bold uppercase tracking-widest text-on-surface-variant mb-4">Manual Override &amp; Decision</label>
+<div class="grid grid-cols-2 gap-4 mb-6">
+<button class="flex items-center justify-center gap-2 py-3 rounded-full border border-secondary text-secondary hover:bg-secondary hover:text-white transition-all font-label text-xs font-bold uppercase tracking-widest">
+<span class="material-symbols-outlined text-lg">check</span>
+                                Approve
+                            </button>
+<button class="flex items-center justify-center gap-2 py-3 rounded-full border border-error text-error hover:bg-error hover:text-white transition-all font-label text-xs font-bold uppercase tracking-widest">
+<span class="material-symbols-outlined text-lg">close</span>
+                                Reject
+                            </button>
+</div>
+<textarea class="w-full bg-surface-container-low border-none rounded-xl p-4 font-body italic text-primary focus:ring-1 focus:ring-primary-fixed-dim transition-all mb-6 min-h-[100px]" placeholder="Add internal admin notes here..."></textarea>
+<button class="w-full py-4 amber-glow-btn text-on-tertiary-fixed rounded-full font-headline font-black text-xs tracking-[0.2em] uppercase shadow-lg shadow-primary-fixed-dim/20 hover:scale-[1.02] active:scale-95 transition-all">Submit Decision</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-[#001F3F] text-[#fbbc00] w-full pt-20 pb-10 mt-10">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-12 max-w-7xl mx-auto px-8 border-t border-white/5 pt-10">
+<div class="col-span-1 md:col-span-1">
+<span class="font-headline text-white text-xl font-bold uppercase">DriveEase PH</span>
+<p class="mt-4 font-label text-[10px] text-white/40 tracking-widest leading-loose uppercase">© 2024 DRIVE-EASE PH. CURATED MOBILITY.</p>
+</div>
+<div class="space-y-4">
+<h4 class="font-label text-xs font-bold uppercase tracking-widest text-white">Operations</h4>
+<ul class="space-y-2 font-label text-[10px] tracking-widest uppercase">
+<li><a class="text-white/40 hover:text-[#fbbc00] transition-colors" href="#">Fleet Management</a></li>
+<li><a class="text-white/40 hover:text-[#fbbc00] transition-colors" href="#">User Verifications</a></li>
+<li><a class="text-white/40 hover:text-[#fbbc00] transition-colors" href="#">Finances</a></li>
+</ul>
+</div>
+<div class="space-y-4">
+<h4 class="font-label text-xs font-bold uppercase tracking-widest text-white">Company</h4>
+<ul class="space-y-2 font-label text-[10px] tracking-widest uppercase">
+<li><a class="text-white/40 hover:text-[#fbbc00] transition-colors" href="#">How it Works</a></li>
+<li><a class="text-white/40 hover:text-[#fbbc00] transition-colors" href="#">Concierge</a></li>
+<li><a class="text-white/40 hover:text-[#fbbc00] transition-colors" href="#">Legal</a></li>
+</ul>
+</div>
+<div class="flex flex-col gap-4">
+<h4 class="font-label text-xs font-bold uppercase tracking-widest text-white">Direct Line</h4>
+<p class="font-headline font-bold text-white text-lg tracking-tight italic">HQ: +63 (2) 888 0000</p>
+</div>
+</div>
+</footer>
+</body></html>

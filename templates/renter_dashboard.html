@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@400;700;800;900&amp;family=Newsreader:ital,wght@0,400;0,600;1,400&amp;family=Inter:wght@400;500;600&amp;family=DM+Mono&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+    .amber-gradient-btn {
+        background: linear-gradient(135deg, #fbbc00 0%, #ab7f00 100%);
+    }
+</style>
+</head>
+<body class="bg-surface font-body text-on-surface">
+<nav class="bg-[#f9f9f9]/80 dark:bg-[#001F3F]/90 backdrop-blur-xl sticky top-0 z-50 shadow-sm">
+    <div class="flex justify-between items-center w-full px-6 py-4 max-w-7xl mx-auto">
+        <div class="flex items-center gap-4">
+            <a href="{{ url_for('home') }}" class="text-2xl font-black tracking-tighter text-[#001F3F] dark:text-[#fbbc00] font-headline uppercase">DriveEase PH</a>
+        </div>
+        <div class="hidden md:flex gap-8 items-center">
+            <a class="text-[#001F3F] font-medium hover:text-[#ab7f00] font-headline tracking-tight uppercase" href="{{ url_for('fleet') }}">Fleet</a>
+            <a class="text-[#fbbc00] font-bold font-headline tracking-tight uppercase" href="{{ url_for('dashboard') }}">My Bookings</a>
+            <a href="{{ url_for('logout') }}" class="text-xs font-bold uppercase tracking-widest text-on-surface-variant">Logout</a>
+        </div>
+    </div>
+</nav>
+<main class="max-w-7xl mx-auto px-6 py-12">
+    <h1 class="font-headline text-4xl font-black text-primary mb-8 uppercase tracking-tighter">My Reservations</h1>
+    
+    <div class="grid grid-cols-1 gap-6">
+        {% if bookings %}
+            {% for booking in bookings %}
+            <div class="bg-white rounded-3xl p-8 shadow-sm border border-outline-variant/20 flex flex-col md:flex-row gap-8 items-center">
+                <div class="w-full md:w-48 aspect-video rounded-2xl overflow-hidden bg-surface-container">
+                    <img src="{{ booking.car.image_url }}" class="w-full h-full object-cover"/>
+                </div>
+                <div class="flex-1">
+                    <div class="flex justify-between items-start mb-4">
+                        <div>
+                            <h3 class="font-headline text-xl font-bold text-primary">{{ booking.car.brand }} {{ booking.car.model }}</h3>
+                            <p class="text-xs text-on-surface-variant uppercase tracking-widest">{{ booking.pickup_datetime.strftime('%b %d') }} – {{ booking.return_datetime.strftime('%b %d, %Y') }}</p>
+                        </div>
+                        <span class="px-4 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest 
+                            {% if booking.status == 'Pending' %}bg-amber-100 text-amber-700
+                            {% elif booking.status == 'Confirmed' %}bg-green-100 text-green-700
+                            {% else %}bg-red-100 text-red-700{% endif %}">
+                            {{ booking.status }}
+                        </span>
+                    </div>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                        <div>
+                            <p class="text-[10px] font-bold text-on-surface-variant uppercase">Total Amount</p>
+                            <p class="font-headline font-bold text-lg">₱{{ "{:,.2f}".format(booking.total_amount) }}</p>
+                        </div>
+                        <div>
+                            <p class="text-[10px] font-bold text-on-surface-variant uppercase">Pickup</p>
+                            <p class="text-sm italic">{{ booking.pickup_location }}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex gap-2">
+                    <button class="px-6 py-3 rounded-full border border-outline-variant text-xs font-bold uppercase tracking-widest hover:bg-surface-container transition-colors">Details</button>
+                </div>
+            </div>
+            {% endfor %}
+        {% else %}
+            <div class="text-center py-20 bg-surface-container-low rounded-3xl">
+                <span class="material-symbols-outlined text-6xl text-on-surface-variant/30 mb-4">directions_car</span>
+                <p class="text-on-surface-variant italic">No reservations found. <a href="{{ url_for('fleet') }}" class="text-primary font-bold not-italic underline">Book your first ride today.</a></p>
+            </div>
+        {% endif %}
+    </div>
+</main>
+</body></html>

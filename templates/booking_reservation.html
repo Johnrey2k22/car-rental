@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@400;700;800;900&amp;family=Newsreader:ital,wght@0,400;0,600;1,400&amp;family=Inter:wght@400;500;600&amp;family=DM+Mono&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "on-surface": "#1a1c1c",
+                        "secondary": "#476083",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary-fixed": "#d4e3ff",
+                        "surface": "#f9f9f9",
+                        "tertiary-fixed": "#ffdfa0",
+                        "surface-container-highest": "#e2e2e2",
+                        "on-tertiary-fixed": "#261a00",
+                        "on-tertiary-fixed-variant": "#5c4300",
+                        "on-secondary": "#ffffff",
+                        "on-surface-variant": "#43474e",
+                        "error-container": "#ffdad6",
+                        "tertiary-container": "#291c00",
+                        "secondary-container": "#bdd6ff",
+                        "primary-fixed": "#ffdfa0",
+                        "inverse-surface": "#2f3131",
+                        "on-primary": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary-fixed-variant": "#2f486a",
+                        "surface-variant": "#e2e2e2",
+                        "inverse-on-surface": "#f1f1f1",
+                        "on-error-container": "#93000a",
+                        "on-primary-container": "#ab7f00",
+                        "on-error": "#ffffff",
+                        "surface-bright": "#f9f9f9",
+                        "outline": "#74777f",
+                        "on-secondary-fixed": "#001c3a",
+                        "surface-tint": "#795900",
+                        "on-background": "#1a1c1c",
+                        "surface-container-low": "#f3f3f3",
+                        "on-primary-fixed": "#261a00",
+                        "inverse-primary": "#fbbc00",
+                        "outline-variant": "#c4c6cf",
+                        "surface-container-high": "#e8e8e8",
+                        "primary-fixed-dim": "#fbbc00",
+                        "primary-container": "#2a1c00",
+                        "error": "#ba1a1a",
+                        "secondary-fixed-dim": "#afc8f0",
+                        "surface-container": "#eeeeee",
+                        "tertiary-fixed-dim": "#fbbc00",
+                        "background": "#f9f9f9",
+                        "on-secondary-container": "#445d80",
+                        "on-primary-fixed-variant": "#5c4300",
+                        "tertiary": "#090500",
+                        "primary": "#0a0500",
+                        "surface-dim": "#dadada",
+                        "on-tertiary-container": "#ab7f00"
+                    },
+                    fontFamily: {
+                        "headline": ["Epilogue"],
+                        "body": ["Newsreader"],
+                        "label": ["Inter"]
+                    },
+                    borderRadius: { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" },
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .amber-gradient-btn {
+            background: linear-gradient(135deg, #fbbc00 0%, #ab7f00 100%);
+        }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface">
+<!-- TopAppBar -->
+<nav class="bg-[#f9f9f9]/80 dark:bg-[#001F3F]/90 backdrop-blur-xl sticky top-0 z-50 shadow-[0_20px_40px_rgba(0,31,63,0.06)]">
+<div class="flex justify-between items-center w-full px-6 py-4 max-w-7xl mx-auto">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-[#001F3F] dark:text-[#fbbc00]">menu</span>
+<a href="{{ url_for('home') }}" class="text-2xl font-black tracking-tighter text-[#001F3F] dark:text-[#fbbc00] font-headline uppercase">DriveEase PH</a>
+</div>
+<div class="hidden md:flex gap-8 items-center">
+<a class="text-[#001F3F] font-medium hover:text-[#ab7f00] transition-colors duration-300 font-headline tracking-tight uppercase" href="{{ url_for('fleet') }}">Fleet</a>
+<a class="text-[#fbbc00] font-bold hover:text-[#ab7f00] transition-colors duration-300 font-headline tracking-tight uppercase" href="{{ url_for('dashboard') }}">Bookings</a>
+<a class="text-[#001F3F] font-medium hover:text-[#ab7f00] transition-colors duration-300 font-headline tracking-tight uppercase" href="#">Concierge</a>
+{% if current_user.is_authenticated %}
+<a href="{{ url_for('logout') }}" class="text-xs font-bold uppercase tracking-widest text-on-surface-variant">Logout</a>
+{% else %}
+<a href="{{ url_for('login') }}" class="text-xs font-bold uppercase tracking-widest text-on-surface-variant">Login</a>
+{% endif %}
+</div>
+</div>
+</nav>
+<main class="max-w-7xl mx-auto px-6 py-12">
+<form method="POST" class="flex flex-col lg:flex-row gap-10">
+<!-- Left Column: Form -->
+<div class="flex-1 space-y-8">
+<!-- Section 1: Rental Details -->
+<section class="bg-surface-container-low p-8 rounded-xl">
+<div class="flex items-center gap-4 mb-8">
+<div class="w-8 h-8 rounded-full bg-primary-fixed-dim flex items-center justify-center text-on-primary-fixed font-headline font-bold">1</div>
+<h2 class="font-headline text-xl font-bold uppercase tracking-tight">Rental Details</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="space-y-1">
+<label class="font-label text-[10px] uppercase tracking-widest text-on-surface-variant ml-1">Pickup Location</label>
+<input name="pickup_location" class="w-full bg-surface-container-high border-none border-b-2 border-transparent focus:border-primary-fixed-dim focus:ring-0 px-4 py-3 rounded-t-lg font-body" type="text" value="Ninoy Aquino International Airport (T3)"/>
+</div>
+<div class="space-y-1">
+<label class="font-label text-[10px] uppercase tracking-widest text-on-surface-variant ml-1">Return Location</label>
+<input name="return_location" class="w-full bg-surface-container-high border-none border-b-2 border-transparent focus:border-primary-fixed-dim focus:ring-0 px-4 py-3 rounded-t-lg font-body" type="text" value="Ninoy Aquino International Airport (T3)"/>
+</div>
+<div class="space-y-1">
+<label class="font-label text-[10px] uppercase tracking-widest text-on-surface-variant ml-1">Pickup Datetime</label>
+<input name="pickup_datetime" class="w-full bg-surface-container-high border-none border-b-2 border-transparent focus:border-primary-fixed-dim focus:ring-0 px-4 py-3 rounded-t-lg font-body" type="datetime-local" required/>
+</div>
+<div class="space-y-1">
+<label class="font-label text-[10px] uppercase tracking-widest text-on-surface-variant ml-1">Return Datetime</label>
+<input name="return_datetime" class="w-full bg-surface-container-high border-none border-b-2 border-transparent focus:border-primary-fixed-dim focus:ring-0 px-4 py-3 rounded-t-lg font-body" type="datetime-local" required/>
+</div>
+</div>
+</section>
+<!-- Section 2: Renter Information -->
+<section class="bg-surface-container-low p-8 rounded-xl">
+<div class="flex items-center gap-4 mb-8">
+<div class="w-8 h-8 rounded-full bg-primary-fixed-dim flex items-center justify-center text-on-primary-fixed font-headline font-bold">2</div>
+<h2 class="font-headline text-xl font-bold uppercase tracking-tight">Renter Information</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="space-y-1">
+<label class="font-label text-[10px] uppercase tracking-widest text-on-surface-variant ml-1">First Name</label>
+<input name="first_name" class="w-full bg-surface-container-high border-none border-b-2 border-transparent focus:border-primary-fixed-dim focus:ring-0 px-4 py-3 rounded-t-lg font-body" placeholder="John" type="text" required/>
+</div>
+<div class="space-y-1">
+<label class="font-label text-[10px] uppercase tracking-widest text-on-surface-variant ml-1">Last Name</label>
+<input name="last_name" class="w-full bg-surface-container-high border-none border-b-2 border-transparent focus:border-primary-fixed-dim focus:ring-0 px-4 py-3 rounded-t-lg font-body" placeholder="Doe" type="text" required/>
+</div>
+<div class="space-y-1">
+<label class="font-label text-[10px] uppercase tracking-widest text-on-surface-variant ml-1">Mobile Number</label>
+<input name="mobile" class="w-full bg-surface-container-high border-none border-b-2 border-transparent focus:border-primary-fixed-dim focus:ring-0 px-4 py-3 rounded-t-lg font-body" placeholder="+63 912 345 6789" type="tel" required/>
+</div>
+<div class="space-y-1">
+<label class="font-label text-[10px] uppercase tracking-widest text-on-surface-variant ml-1">Email Address</label>
+<input name="email" class="w-full bg-surface-container-high border-none border-b-2 border-transparent focus:border-primary-fixed-dim focus:ring-0 px-4 py-3 rounded-t-lg font-body" placeholder="john.doe@example.com" type="email" value="{{ current_user.email }}" required/>
+</div>
+</div>
+</section>
+<!-- Section 3: Add-ons & Extras -->
+<section class="bg-surface-container-low p-8 rounded-xl">
+<div class="flex items-center gap-4 mb-8">
+<div class="w-8 h-8 rounded-full bg-primary-fixed-dim flex items-center justify-center text-on-primary-fixed font-headline font-bold">3</div>
+<h2 class="font-headline text-xl font-bold uppercase tracking-tight">Add-ons &amp; Extras</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+{% for addon in addons %}
+<label class="bg-surface-container-lowest p-5 rounded-xl flex items-start gap-4 cursor-pointer hover:bg-secondary-container transition-colors group">
+<input type="checkbox" name="addons" value="{{ addon.id }}" class="hidden peer"/>
+<div class="mt-1">
+<span class="material-symbols-outlined text-primary-fixed-dim group-hover:text-on-secondary-container">add_circle</span>
+</div>
+<div class="flex-1">
+<h3 class="font-headline font-bold text-sm uppercase tracking-tight">{{ addon.name }}</h3>
+<p class="text-xs text-on-surface-variant italic mb-2">{{ addon.description }}</p>
+<span class="font-label text-[10px] font-bold text-on-primary-container">₱{{ addon.price_per_day }} / DAY</span>
+</div>
+<div class="w-5 h-5 rounded border-2 border-outline-variant peer-checked:bg-primary-fixed-dim peer-checked:border-primary-fixed-dim flex items-center justify-center transition-all">
+<span class="material-symbols-outlined text-[14px] text-white" style="font-variation-settings: 'FILL' 1;">check</span>
+</div>
+</label>
+{% endfor %}
+</div>
+</section>
+</div>
+<!-- Right Column: Sticky Sidebar -->
+<aside class="w-full lg:w-[360px]">
+<div class="sticky top-28 space-y-6">
+<div class="bg-surface-container-lowest rounded-xl shadow-[0_20px_40px_rgba(0,31,63,0.06)] overflow-hidden">
+<div class="aspect-[16/9] bg-surface-container-highest">
+<img alt="{{ car.brand }} {{ car.model }}" class="w-full h-full object-cover" src="{{ car.image_url }}"/>
+</div>
+<div class="p-6 space-y-6">
+<div>
+<h3 class="font-headline text-xl font-black uppercase tracking-tighter text-primary">{{ car.brand }} {{ car.model }}</h3>
+<p class="font-label text-[10px] uppercase tracking-[0.2em] text-on-surface-variant mt-1">{{ car.category }} • {{ car.transmission }}</p>
+</div>
+<div class="space-y-3">
+<div class="flex justify-between items-center">
+<span class="font-body text-sm">Base Rate</span>
+<span class="font-label text-sm">₱{{ "{:,.0f}".format(car.daily_rate) }} / day</span>
+</div>
+<div class="pt-4 mt-2 border-t border-surface-variant flex justify-between items-end">
+<span class="font-headline font-bold uppercase text-xs tracking-widest">Total Estimated</span>
+<span class="font-headline font-black text-2xl text-on-primary-container">₱--</span>
+</div>
+</div>
+<button type="submit" class="w-full amber-gradient-btn text-white py-4 rounded-full font-label text-xs font-black tracking-[0.2em] uppercase active:scale-95 transition-all">
+                                Confirm Booking
+                            </button>
+</div>
+</div>
+</div>
+</aside>
+</form>
+</main>
+</body></html>

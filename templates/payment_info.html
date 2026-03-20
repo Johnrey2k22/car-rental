@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Payment — DriveEase PH</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@400;700;800;900&amp;family=Newsreader:ital,wght@0,400;0,600;1,400&amp;family=Inter:wght@400;500;600&amp;family=DM+Mono&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "on-surface": "#1a1c1c",
+                        "secondary": "#476083",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary-fixed": "#d4e3ff",
+                        "surface": "#f9f9f9",
+                        "tertiary-fixed": "#ffdfa0",
+                        "surface-container-highest": "#e2e2e2",
+                        "on-tertiary-fixed": "#261a00",
+                        "on-tertiary-fixed-variant": "#5c4300",
+                        "on-secondary": "#ffffff",
+                        "on-surface-variant": "#43474e",
+                        "error-container": "#ffdad6",
+                        "tertiary-container": "#291c00",
+                        "secondary-container": "#bdd6ff",
+                        "primary-fixed": "#ffdfa0",
+                        "inverse-surface": "#2f3131",
+                        "on-primary": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary-fixed-variant": "#2f486a",
+                        "surface-variant": "#e2e2e2",
+                        "inverse-on-surface": "#f1f1f1",
+                        "on-error-container": "#93000a",
+                        "on-primary-container": "#ab7f00",
+                        "on-error": "#ffffff",
+                        "surface-bright": "#f9f9f9",
+                        "outline": "#74777f",
+                        "on-secondary-fixed": "#001c3a",
+                        "surface-tint": "#795900",
+                        "on-background": "#1a1c1c",
+                        "surface-container-low": "#f3f3f3",
+                        "on-primary-fixed": "#261a00",
+                        "inverse-primary": "#fbbc00",
+                        "outline-variant": "#c4c6cf",
+                        "surface-container-high": "#e8e8e8",
+                        "primary-fixed-dim": "#fbbc00",
+                        "primary-container": "#2a1c00",
+                        "error": "#ba1a1a",
+                        "secondary-fixed-dim": "#afc8f0",
+                        "surface-container": "#eeeeee",
+                        "tertiary-fixed-dim": "#fbbc00",
+                        "background": "#f9f9f9",
+                        "on-secondary-container": "#445d80",
+                        "on-primary-fixed-variant": "#5c4300",
+                        "tertiary": "#090500",
+                        "primary": "#0a0500",
+                        "surface-dim": "#dadada",
+                        "on-tertiary-container": "#ab7f00"
+                    },
+                    fontFamily: {
+                        "headline": ["Epilogue"],
+                        "body": ["Newsreader"],
+                        "label": ["Inter"]
+                    },
+                    borderRadius: { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" },
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .amber-gradient {
+            background: linear-gradient(135deg, #fbbc00 0%, #ab7f00 100%);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface font-body text-on-surface selection:bg-primary-fixed-dim">
+<header class="bg-[#f9f9f9]/80 dark:bg-[#001F3F]/90 backdrop-blur-xl shadow-[0_20px_40px_rgba(0,31,63,0.06)] sticky top-0 z-50">
+<div class="flex justify-between items-center w-full px-6 py-4 max-w-7xl mx-auto">
+<div class="text-2xl font-black tracking-tighter text-[#001F3F] dark:text-[#fbbc00] font-headline uppercase">
+                DriveEase PH
+            </div>
+<div class="hidden md:flex items-center gap-8">
+<a class="text-[#001F3F] font-bold font-headline tracking-tight uppercase hover:text-[#ab7f00] transition-colors duration-300" href="#">The Collection</a>
+<a class="text-[#001F3F]/60 font-medium font-headline tracking-tight uppercase hover:text-[#ab7f00] transition-colors duration-300" href="#">How it Works</a>
+<a class="bg-primary-container text-[#fbbc00] px-6 py-2 rounded-full font-headline font-bold text-sm tracking-widest hover:scale-105 transition-transform active:scale-95" href="#">BOOK A CAR</a>
+</div>
+<button class="md:hidden text-[#001F3F]">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</header>
+<main class="max-w-7xl mx-auto px-6 py-12 mb-24">
+<nav class="mb-16">
+<div class="flex items-center justify-between max-w-3xl mx-auto relative">
+<div class="absolute top-1/2 left-0 w-full h-px bg-surface-container-highest -z-10"></div>
+<div class="flex flex-col items-center gap-3 bg-surface px-4">
+<div class="w-10 h-10 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">check</span>
+</div>
+<span class="font-label text-[10px] uppercase tracking-widest text-on-surface-variant">Selection</span>
+</div>
+<div class="flex flex-col items-center gap-3 bg-surface px-4">
+<div class="w-10 h-10 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">check</span>
+</div>
+<span class="font-label text-[10px] uppercase tracking-widest text-on-surface-variant">Details</span>
+</div>
+<div class="flex flex-col items-center gap-3 bg-surface px-4">
+<div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center text-primary-fixed-dim ring-4 ring-primary-fixed/20">
+<span class="font-headline font-bold text-sm">3</span>
+</div>
+<span class="font-label text-[10px] uppercase tracking-widest text-primary-container font-bold">Payment</span>
+</div>
+<div class="flex flex-col items-center gap-3 bg-surface px-4">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest flex items-center justify-center text-outline">
+<span class="font-headline font-bold text-sm">4</span>
+</div>
+<span class="font-label text-[10px] uppercase tracking-widest text-outline">Confirm</span>
+</div>
+</div>
+</nav>
+<div class="grid grid-cols-1 lg:grid-cols-[1fr_380px] gap-12 items-start">
+<section class="space-y-8">
+<div class="bg-surface-container-lowest p-10 rounded-xl shadow-[0_20px_40px_rgba(0,31,63,0.04)]">
+<div class="mb-10">
+<h1 class="font-headline text-3xl font-black tracking-tight text-primary uppercase">Choose Payment Method</h1>
+<p class="font-body italic text-on-surface-variant mt-2">Secure encrypted processing via PayMongo</p>
+</div>
+<div class="flex flex-wrap gap-2 mb-10 bg-surface-container-low p-1.5 rounded-full">
+<button class="flex-1 min-w-[100px] bg-primary-container text-primary-fixed-dim px-6 py-3 rounded-full font-label text-xs font-bold uppercase tracking-widest flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-sm">wallet</span> GCash
+                        </button>
+<button class="flex-1 min-w-[100px] text-on-surface-variant hover:bg-surface-container-high px-6 py-3 rounded-full font-label text-xs font-medium uppercase tracking-widest transition-all">Maya</button>
+<button class="flex-1 min-w-[100px] text-on-surface-variant hover:bg-surface-container-high px-6 py-3 rounded-full font-label text-xs font-medium uppercase tracking-widest transition-all">QR Ph</button>
+<button class="flex-1 min-w-[100px] text-on-surface-variant hover:bg-surface-container-high px-6 py-3 rounded-full font-label text-xs font-medium uppercase tracking-widest transition-all">Credit Card</button>
+</div>
+<div class="space-y-8">
+<div class="p-8 bg-surface-container-low rounded-xl">
+<label class="block font-label text-[10px] uppercase tracking-[0.2em] text-on-surface-variant mb-4">Mobile Number</label>
+<div class="relative group">
+<span class="absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant font-label">+63</span>
+<input class="w-full bg-surface-container-high border-none focus:ring-0 pl-14 py-4 font-label text-lg tracking-widest placeholder:text-outline-variant" placeholder="9XX XXX XXXX" type="text"/>
+<div class="absolute bottom-0 left-0 w-full h-0.5 bg-primary-fixed-dim scale-x-0 group-focus-within:scale-x-100 transition-transform origin-left"></div>
+</div>
+<p class="mt-6 flex items-start gap-3 text-sm text-on-surface-variant font-body italic">
+<span class="material-symbols-outlined text-lg mt-0.5">info</span>
+                                You will be redirected to the GCash login page to authorize this payment securely.
+                            </p>
+</div>
+<div class="border-2 border-dashed border-outline-variant rounded-xl p-12 flex flex-col items-center justify-center bg-surface-container-low opacity-40">
+<div class="w-48 h-48 bg-surface-container-highest rounded-lg flex flex-col items-center justify-center border border-outline-variant/30 mb-4">
+<span class="material-symbols-outlined text-4xl mb-2">qr_code_2</span>
+<span class="font-label text-xs font-bold uppercase tracking-widest">[QR]</span>
+</div>
+<span class="font-label text-[10px] uppercase tracking-widest">Scan with QR Ph compatible apps</span>
+</div>
+<div class="p-8 border border-outline-variant/20 rounded-xl opacity-30 grayscale pointer-events-none">
+<div class="grid grid-cols-2 gap-6">
+<div class="col-span-2">
+<label class="block font-label text-[10px] uppercase tracking-[0.2em] text-on-surface-variant mb-2">Cardholder Name</label>
+<div class="h-12 bg-surface-container-high rounded-md"></div>
+</div>
+<div class="col-span-2">
+<label class="block font-label text-[10px] uppercase tracking-[0.2em] text-on-surface-variant mb-2">Card Number</label>
+<div class="h-12 bg-surface-container-high rounded-md"></div>
+</div>
+<div>
+<label class="block font-label text-[10px] uppercase tracking-[0.2em] text-on-surface-variant mb-2">Expiry</label>
+<div class="h-12 bg-surface-container-high rounded-md"></div>
+</div>
+<div>
+<label class="block font-label text-[10px] uppercase tracking-[0.2em] text-on-surface-variant mb-2">CVV</label>
+<div class="h-12 bg-surface-container-high rounded-md"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-12 space-y-8">
+<button class="w-full amber-gradient text-primary px-8 py-5 rounded-full font-headline font-black text-lg tracking-widest uppercase shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all active:scale-95">
+                            Confirm &amp; Pay ₱12,450.00
+                        </button>
+<div class="flex flex-wrap justify-center items-center gap-x-12 gap-y-6 pt-8 border-t border-surface-container-highest">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-on-surface-variant" style="font-variation-settings: 'FILL' 1;">verified_user</span>
+<div class="flex flex-col">
+<span class="font-label text-[9px] uppercase tracking-widest font-bold">SSL Secured</span>
+<span class="font-label text-[8px] text-outline uppercase tracking-wider">256-bit encryption</span>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-on-surface-variant" style="font-variation-settings: 'FILL' 1;">security</span>
+<div class="flex flex-col">
+<span class="font-label text-[9px] uppercase tracking-widest font-bold">PCI DSS</span>
+<span class="font-label text-[8px] text-outline uppercase tracking-wider">Compliant gateway</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<aside class="space-y-6 lg:sticky lg:top-32">
+<div class="bg-surface-container-lowest rounded-xl shadow-[0_20px_40px_rgba(0,31,63,0.06)] overflow-hidden">
+<div class="h-48 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Luxury black Porsche 911 in a showroom" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCo8Ybt-rmpz5wCnXA81StQojvQKpafh-zpm3lSu-uncDVLg1h03dQV1pjyfJ-D6Oy349WkPDtJoRg8qJTmxcEJfXuKrNlp0D-EkQ3Li2P5ddMgEano0zxaoA-wx0q9K2cTI5WiUOHdR_BcsTDaA6uq0ArQI6WqCd1mDJ8wsrPowxA-rCLdjJLHvw4CrxwBtvLYd-yhjbOSN4pGbYGJHlgE2JFBn7owhj4y7UXCBoa_fZHAN8WP-xuceXCUVxGhDCYaO0sSvpxMSaZT"/>
+</div>
+<div class="p-8">
+<div class="mb-6">
+<h2 class="font-headline font-black text-2xl tracking-tighter text-primary uppercase leading-tight">Porsche 911 Carrera S</h2>
+<div class="inline-block mt-2 px-3 py-1 bg-primary-fixed rounded font-label text-[9px] font-bold tracking-[0.2em] text-on-primary-fixed uppercase">
+                                Ref: #DEPH-889021
+                            </div>
+</div>
+<div class="space-y-4 pt-6 border-t border-surface-container-low">
+<div class="flex justify-between items-start">
+<span class="font-label text-[10px] uppercase tracking-widest text-on-surface-variant">Dates</span>
+<span class="font-body text-sm font-semibold text-right">Nov 24 — Nov 26, 2024<br/><span class="text-[10px] font-label font-normal text-outline uppercase tracking-tighter">(2 Days)</span></span>
+</div>
+<div class="flex justify-between">
+<span class="font-label text-[10px] uppercase tracking-widest text-on-surface-variant">Location</span>
+<span class="font-body text-sm font-semibold">BGC, Taguig</span>
+</div>
+</div>
+<div class="mt-8 space-y-3 pt-6 border-t border-surface-container-low">
+<div class="flex justify-between text-sm">
+<span class="font-body italic">Daily Rate (₱5,000 x 2)</span>
+<span class="font-label font-medium">₱10,000.00</span>
+</div>
+<div class="flex justify-between text-sm">
+<span class="font-body italic">Insurance &amp; Fees</span>
+<span class="font-label font-medium">₱1,250.00</span>
+</div>
+<div class="flex justify-between text-sm">
+<span class="font-body italic">VAT (12%)</span>
+<span class="font-label font-medium">₱1,200.00</span>
+</div>
+<div class="flex justify-between items-center pt-4 mt-2">
+<span class="font-headline font-bold text-xs uppercase tracking-widest">Total Cost</span>
+<span class="font-headline font-black text-2xl text-primary">₱12,450.00</span>
+</div>
+</div>
+</div>
+</div>
+<div class="p-6 bg-secondary-container/20 rounded-xl border border-secondary-container/30">
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-on-secondary-container">contact_support</span>
+<div>
+<p class="font-label text-[10px] uppercase tracking-widest font-bold text-on-secondary-container">Need assistance?</p>
+<p class="font-body text-xs italic mt-1 text-on-secondary-container">Our concierge is available 24/7 for payment queries.</p>
+</div>
+</div>
+</div>
+</aside>
+</div>
+</main>
+<footer class="bg-[#001F3F] text-white pt-20 pb-10 mt-20">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-12 max-w-7xl mx-auto px-8 border-t border-white/5 pt-12">
+<div class="col-span-1 md:col-span-1">
+<div class="font-['Epilogue'] text-white text-xl font-bold mb-6">DRIVE-EASE PH</div>
+<p class="font-['DM_Mono'] text-[10px] text-white/40 leading-relaxed uppercase tracking-widest">
+                    The archipelago's premier automotive curator. Bespoke mobility for the modern explorer.
+                </p>
+</div>
+<div>
+<h4 class="font-['DM_Mono'] text-xs text-[#fbbc00] mb-6 tracking-[0.2em] uppercase">Navigation</h4>
+<ul class="space-y-3">
+<li><a class="font-['DM_Mono'] text-xs text-white/40 hover:text-[#fbbc00] transition-colors uppercase tracking-widest" href="#">The Collection</a></li>
+<li><a class="font-['DM_Mono'] text-xs text-white/40 hover:text-[#fbbc00] transition-colors uppercase tracking-widest" href="#">How it Works</a></li>
+<li><a class="font-['DM_Mono'] text-xs text-white/40 hover:text-[#fbbc00] transition-colors uppercase tracking-widest" href="#">Concierge</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-['DM_Mono'] text-xs text-[#fbbc00] mb-6 tracking-[0.2em] uppercase">Headquarters</h4>
+<p class="font-['DM_Mono'] text-xs text-white/40 uppercase tracking-widest leading-loose">
+                    Level 28, Pacific Star Bldg.<br/>Makati Avenue, Metro Manila<br/>Philippines 1209
+                </p>
+</div>
+<div>
+<h4 class="font-['DM_Mono'] text-xs text-[#fbbc00] mb-6 tracking-[0.2em] uppercase">Newsletter</h4>
+<div class="flex border-b border-white/20 pb-2">
+<input class="bg-transparent border-none focus:ring-0 text-xs font-['DM_Mono'] tracking-widest w-full placeholder:text-white/20" placeholder="YOUR EMAIL" type="email"/>
+<button class="material-symbols-outlined text-sm">arrow_forward</button>
+</div>
+</div>
+</div>
+<div class="max-w-7xl mx-auto px-8 mt-20 pt-10 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
+<div class="font-['DM_Mono'] text-[9px] text-white/20 tracking-[0.3em] uppercase">
+                © 2024 DRIVE-EASE PH. CURATED MOBILITY.
+            </div>
+<div class="flex gap-8">
+<a class="font-['DM_Mono'] text-[9px] text-white/20 hover:text-white uppercase tracking-[0.2em]" href="#">Privacy</a>
+<a class="font-['DM_Mono'] text-[9px] text-white/20 hover:text-white uppercase tracking-[0.2em]" href="#">Terms</a>
+</div>
+</div>
+</footer>
+<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 bg-[#ffffff]/80 backdrop-blur-lg flex justify-around items-center px-4 pb-6 pt-2 shadow-[0_-10px_30px_rgba(0,31,63,0.08)]">
+<a class="flex flex-col items-center justify-center text-[#001F3F]/60" href="#">
+<span class="material-symbols-outlined">explore</span>
+<span class="font-['Inter'] text-[10px] font-medium uppercase tracking-widest mt-1">Explore</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#001F3F]/60" href="#">
+<span class="material-symbols-outlined">directions_car</span>
+<span class="font-['Inter'] text-[10px] font-medium uppercase tracking-widest mt-1">Bookings</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-[#2a1c00] text-[#fbbc00] rounded-full px-5 py-2" href="#">
+<span class="material-symbols-outlined">wallet</span>
+<span class="font-['Inter'] text-[10px] font-medium uppercase tracking-widest mt-1">Pay</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#001F3F]/60" href="#">
+<span class="material-symbols-outlined">account_circle</span>
+<span class="font-['Inter'] text-[10px] font-medium uppercase tracking-widest mt-1">Profile</span>
+</a>
+</nav>
+</body></html>

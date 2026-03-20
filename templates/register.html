@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>DriveEase PH | Register</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@700;800;900&family=Newsreader:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;500;600&family=DM+Mono&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <style>
+        .amber-gradient-btn {
+            background: linear-gradient(135deg, #fbbc00 0%, #ab7f00 100%);
+        }
+    </style>
+</head>
+<body class="bg-[#f9f9f9] font-body text-[#1a1c1c]">
+    <header class="bg-[#f9f9f9]/80 backdrop-blur-xl sticky top-0 z-50 shadow-sm">
+        <div class="flex justify-between items-center w-full px-6 py-4 max-w-7xl mx-auto">
+            <a href="{{ url_for('home') }}" class="text-2xl font-black tracking-tighter text-[#001F3F] font-headline uppercase">DriveEase PH</a>
+        </div>
+    </header>
+    <main class="max-w-md mx-auto mt-20 p-8 bg-white rounded-3xl shadow-xl">
+        <h2 class="font-headline text-3xl font-black text-primary mb-6 uppercase tracking-tight text-center">Register</h2>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            {% for category, message in messages %}
+              <div class="mb-4 p-3 rounded-lg {% if category == 'error' %}bg-red-100 text-red-700{% else %}bg-green-100 text-green-700{% endif %} text-sm">
+                {{ message }}
+              </div>
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
+        <form method="POST">
+            <div class="space-y-4">
+                <div>
+                    <label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-1">Email Address</label>
+                    <input type="email" name="email" required class="w-full bg-[#f3f3f3] border-none rounded-xl p-4 focus:ring-2 focus:ring-[#fbbc00]"/>
+                </div>
+                <div>
+                    <label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-1">Password</label>
+                    <input type="password" name="password" required class="w-full bg-[#f3f3f3] border-none rounded-xl p-4 focus:ring-2 focus:ring-[#fbbc00]"/>
+                </div>
+                <button type="submit" class="w-full amber-gradient-btn text-white py-4 rounded-xl font-headline font-bold uppercase tracking-widest shadow-lg active:scale-95 transition-transform">Create Account</button>
+            </div>
+        </form>
+        <p class="mt-6 text-center text-sm text-on-surface-variant">
+            Already have an account? <a href="{{ url_for('login') }}" class="text-[#ab7f00] font-bold">Login here</a>
+        </p>
+    </main>
+</body>
+</html>
