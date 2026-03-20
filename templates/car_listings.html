@@ -109,99 +109,78 @@
 <main class="max-w-7xl mx-auto flex min-h-screen">
 <!-- Sidebar Filters (260px) -->
 <aside class="w-[260px] flex-shrink-0 bg-surface border-r border-outline-variant/10 p-6 hidden md:block">
-<div class="sticky top-24">
+<form action="{{ url_for('fleet') }}" method="GET" class="sticky top-24">
 <div class="flex justify-between items-center mb-8">
 <h2 class="font-headline font-extrabold text-xl tracking-tight uppercase">Filters</h2>
-<button class="font-label text-[10px] tracking-widest uppercase text-outline hover:text-primary transition-colors">Clear All</button>
+<a href="{{ url_for('fleet') }}" class="font-label text-[10px] tracking-widest uppercase text-outline hover:text-primary transition-colors">Clear All</a>
 </div>
 <div class="space-y-8 overflow-y-auto max-h-[calc(100vh-200px)] hide-scrollbar pb-10">
 <!-- Brand Filter -->
 <section>
-<button class="flex justify-between items-center w-full mb-4 group">
+<button type="button" class="flex justify-between items-center w-full mb-4 group">
 <span class="font-label font-bold text-xs tracking-widest uppercase">Brand</span>
 <span class="material-symbols-outlined text-sm">expand_more</span>
 </button>
 <div class="space-y-3 px-1">
+{% for brand in ['Porsche', 'BMW', 'Mercedes-Benz', 'Land Rover', 'Tesla'] %}
 <label class="flex items-center justify-between group cursor-pointer">
 <div class="flex items-center gap-3">
-<input class="w-4 h-4 rounded-sm border-outline-variant text-primary focus:ring-primary-fixed" type="checkbox"/>
-<span class="font-label text-sm text-on-surface-variant group-hover:text-on-surface">Porsche</span>
+<input name="brand" value="{{ brand }}" {% if brand in selected_brands %}checked{% endif %} class="w-4 h-4 rounded-sm border-outline-variant text-primary focus:ring-primary-fixed" type="checkbox"/>
+<span class="font-label text-sm text-on-surface-variant group-hover:text-on-surface">{{ brand }}</span>
 </div>
-<span class="font-label text-[10px] text-outline">12</span>
 </label>
-<label class="flex items-center justify-between group cursor-pointer">
-<div class="flex items-center gap-3">
-<input class="w-4 h-4 rounded-sm border-outline-variant text-primary focus:ring-primary-fixed" type="checkbox"/>
-<span class="font-label text-sm text-on-surface-variant group-hover:text-on-surface">BMW</span>
-</div>
-<span class="font-label text-[10px] text-outline">08</span>
-</label>
-<label class="flex items-center justify-between group cursor-pointer">
-<div class="flex items-center gap-3">
-<input checked="" class="w-4 h-4 rounded-sm border-outline-variant text-primary focus:ring-primary-fixed" type="checkbox"/>
-<span class="font-label text-sm text-on-surface-variant group-hover:text-on-surface font-semibold">Mercedes-Benz</span>
-</div>
-<span class="font-label text-[10px] text-outline">15</span>
-</label>
+{% endfor %}
 </div>
 </section>
 <!-- Car Type -->
 <section>
-<button class="flex justify-between items-center w-full mb-4 group">
+<button type="button" class="flex justify-between items-center w-full mb-4 group">
 <span class="font-label font-bold text-xs tracking-widest uppercase">Car Type</span>
 <span class="material-symbols-outlined text-sm">expand_more</span>
 </button>
 <div class="grid grid-cols-2 gap-2">
-<button class="bg-surface-container-high px-3 py-2 rounded-lg font-label text-[10px] font-bold tracking-tighter uppercase text-center border-none transition-all hover:bg-secondary-container">Sedan</button>
-<button class="bg-primary text-on-primary px-3 py-2 rounded-lg font-label text-[10px] font-bold tracking-tighter uppercase text-center border-none">SUV</button>
-<button class="bg-surface-container-high px-3 py-2 rounded-lg font-label text-[10px] font-bold tracking-tighter uppercase text-center border-none">Coupe</button>
-<button class="bg-surface-container-high px-3 py-2 rounded-lg font-label text-[10px] font-bold tracking-tighter uppercase text-center border-none">EV</button>
+{% for cat in ['Sedan', 'SUV', 'Coupe', 'Electric'] %}
+<label class="cursor-pointer">
+    <input type="checkbox" name="category" value="{{ cat }}" class="hidden peer" {% if cat in selected_categories %}checked{% endif %}>
+    <div class="bg-surface-container-high peer-checked:bg-primary peer-checked:text-on-primary px-3 py-2 rounded-lg font-label text-[10px] font-bold tracking-tighter uppercase text-center border-none transition-all hover:bg-secondary-container">
+        {{ cat }}
+    </div>
+</label>
+{% endfor %}
 </div>
 </section>
 <!-- Daily Rate -->
 <section>
-<button class="flex justify-between items-center w-full mb-4">
+<button type="button" class="flex justify-between items-center w-full mb-4">
 <span class="font-label font-bold text-xs tracking-widest uppercase">Daily Rate</span>
 </button>
 <div class="px-2">
-<div class="h-1 bg-surface-container-highest rounded-full relative mb-6">
-<div class="absolute left-1/4 right-1/4 h-full bg-primary-fixed-dim rounded-full"></div>
-<div class="absolute left-1/4 top-1/2 -translate-y-1/2 w-4 h-4 bg-white border-2 border-primary-fixed-dim rounded-full shadow-sm cursor-pointer"></div>
-<div class="absolute right-1/4 top-1/2 -translate-y-1/2 w-4 h-4 bg-white border-2 border-primary-fixed-dim rounded-full shadow-sm cursor-pointer"></div>
-</div>
 <div class="flex gap-3 items-center">
-<input class="w-full bg-surface-container-high border-none rounded-lg font-label text-xs p-2 text-center" type="text" value="₱5,000"/>
-<span class="text-outline">/</span>
-<input class="w-full bg-surface-container-high border-none rounded-lg font-label text-xs p-2 text-center" type="text" value="₱25,000"/>
+<input name="min_price" class="w-full bg-surface-container-high border-none rounded-lg font-label text-xs p-2 text-center" type="number" placeholder="Min" value="{{ request.args.get('min_price', '') }}"/>
+<span class="text-outline">-</span>
+<input name="max_price" class="w-full bg-surface-container-high border-none rounded-lg font-label text-xs p-2 text-center" type="number" placeholder="Max" value="{{ request.args.get('max_price', '') }}"/>
 </div>
 </div>
 </section>
-<!-- Availability Toggle -->
-<section class="flex justify-between items-center">
-<span class="font-label font-bold text-xs tracking-widest uppercase">Available Now</span>
-<div class="w-10 h-5 bg-primary-fixed-dim rounded-full relative cursor-pointer">
-<div class="absolute right-0.5 top-0.5 w-4 h-4 bg-white rounded-full shadow-sm"></div>
-</div>
-</section>
-<!-- Year & Transmission -->
+<!-- Transmission -->
 <section class="space-y-4">
 <div class="flex flex-col gap-2">
 <span class="font-label font-bold text-xs tracking-widest uppercase mb-2">Transmission</span>
 <label class="flex items-center gap-3 cursor-pointer">
-<input checked="" class="w-4 h-4 rounded-sm border-outline-variant text-primary focus:ring-primary-fixed" type="checkbox"/>
+<input name="transmission" value="Automatic" {% if 'Automatic' in selected_transmissions %}checked{% endif %} class="w-4 h-4 rounded-sm border-outline-variant text-primary focus:ring-primary-fixed" type="checkbox"/>
 <span class="font-label text-sm text-on-surface-variant">Automatic</span>
 </label>
 <label class="flex items-center gap-3 cursor-pointer">
-<input class="w-4 h-4 rounded-sm border-outline-variant text-primary focus:ring-primary-fixed" type="checkbox"/>
+<input name="transmission" value="Manual" {% if 'Manual' in selected_transmissions %}checked{% endif %} class="w-4 h-4 rounded-sm border-outline-variant text-primary focus:ring-primary-fixed" type="checkbox"/>
 <span class="font-label text-sm text-on-surface-variant">Manual</span>
 </label>
 </div>
 </section>
 </div>
 <div class="pt-6 space-y-3 bg-surface border-t border-outline-variant/10">
-<button class="w-full bg-primary text-on-primary py-3 rounded-full font-label text-xs font-bold tracking-widest uppercase hover:bg-on-surface-variant transition-all">Apply Filters</button>
+<button type="submit" class="w-full bg-primary text-on-primary py-3 rounded-full font-label text-xs font-bold tracking-widest uppercase hover:bg-on-surface-variant transition-all">Apply Filters</button>
 </div>
-</div>
+</form>
 </aside>
 <!-- Main Content Area -->
 <section class="flex-1 bg-surface-container-low p-6 md:p-10">

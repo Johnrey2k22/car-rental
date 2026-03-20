@@ -27,8 +27,33 @@ def home():
 
 @app.route("/fleet")
 def fleet():
-    cars = Car.query.all()
-    return render_template("car_listings.html", cars=cars)
+    # Get filter parameters
+    brands = request.args.getlist('brand')
+    categories = request.args.getlist('category')
+    transmissions = request.args.getlist('transmission')
+    min_price = request.args.get('min_price')
+    max_price = request.args.get('max_price')
+
+    query = Car.query
+
+    if brands:
+        query = query.filter(Car.brand.in_(brands))
+    if categories:
+        query = query.filter(Car.category.in_(categories))
+    if transmissions:
+        query = query.filter(Car.transmission.in_(transmissions))
+    if min_price:
+        query = query.filter(Car.daily_rate >= int(min_price))
+    if max_price:
+        query = query.filter(Car.daily_rate <= int(max_price))
+
+    cars = query.all()
+    
+    return render_template("car_listings.html", 
+                           cars=cars, 
+                           selected_brands=brands,
+                           selected_categories=categories,
+                           selected_transmissions=transmissions)
 
 @app.route("/car/<int:car_id>")
 def car_detail(car_id):
