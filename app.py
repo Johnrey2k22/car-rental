@@ -173,9 +173,80 @@ def logout():
 def admin():
     if current_user.role != 'Admin':
         abort(403)
+    
     cars = Car.query.all()
-    bookings = Booking.query.all()
-    return render_template("admin_dashboard.html", cars=cars, bookings=bookings)
+    bookings = Booking.query.order_by(Booking.created_at.desc()).all()
+    
+    # Calculate stats
+    total_revenue = db.session.query(db.func.sum(Booking.total_amount)).filter(Booking.status == 'Confirmed').scalar() or 0
+    active_rentals = Booking.query.filter(Booking.status == 'Confirmed', Booking.return_datetime >= datetime.utcnow()).count()
+    available_cars = Car.query.filter_by(is_available=True).count()
+    pending_bookings = Booking.query.filter_by(status='Pending').count()
+
+    return render_template("admin_dashboard.html", 
+                           cars=cars, 
+                           bookings=bookings,
+                           stats={
+                               'total_revenue': total_revenue,
+                               'active_rentals': active_rentals,
+                               'available_cars': available_cars,
+                               'pending_bookings': pending_bookings
+                           },
+                           datetime=datetime)
+
+@app.route("/admin/car/add", methods=['POST'])
+@login_required
+def admin_add_car():
+    if current_user.role != 'Admin': abort(403)
+    try:
+        new_car = Car(
+            brand=request.form.get('brand'),
+            model=request.form.get('model'),
+            year=int(request.form.get('year')),
+            transmission=request.form.get('transmission'),
+            seats=int(request.form.get('seats')),
+            fuel_type=request.form.get('fuel_type'),
+            daily_rate=int(request.form.get('daily_rate')),
+            category=request.form.get('category'),
+            image_url=request.form.get('image_url'),
+            description=request.form.get('description')
+        )
+        db.session.add(new_car)
+        db.session.commit()
+        flash('Vehicle added successfully!', 'success')
+    except Exception as e:
+        flash(f'Error adding vehicle: {str(e)}', 'error')
+    return redirect(url_for('admin'))
+
+@app.route("/admin/car/delete/<int:car_id>", methods=['POST'])
+@login_required
+def admin_delete_car(car_id):
+    if current_user.role != 'Admin': abort(403)
+    car = Car.query.get_or_404(car_id)
+    db.session.delete(car)
+    db.session.commit()
+    flash('Vehicle removed from fleet.', 'success')
+    return redirect(url_for('admin'))
+
+@app.route("/admin/booking/confirm/<int:booking_id>", methods=['POST'])
+@login_required
+def admin_confirm_booking(booking_id):
+    if current_user.role != 'Admin': abort(403)
+    booking = Booking.query.get_or_404(booking_id)
+    booking.status = 'Confirmed'
+    db.session.commit()
+    flash(f'Booking #{booking.id} confirmed!', 'success')
+    return redirect(url_for('admin'))
+
+@app.route("/admin/booking/cancel/<int:booking_id>", methods=['POST'])
+@login_required
+def admin_cancel_booking(booking_id):
+    if current_user.role != 'Admin': abort(403)
+    booking = Booking.query.get_or_404(booking_id)
+    booking.status = 'Cancelled'
+    db.session.commit()
+    flash(f'Booking #{booking.id} cancelled.', 'success')
+    return redirect(url_for('admin'))
 
 if __name__ == "__main__":
     with app.app_context():
