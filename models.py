@@ -23,22 +23,51 @@ class Car(db.Model):
     def __repr__(self):
         return f'<Car {self.brand} {self.model}>'
 
+class User(db.Model, UserMixin):
+    id = db.Column(db.Integer, primary_key=True)
+    email = db.Column(db.String(100), unique=True, nullable=False)
+    password = db.Column(db.String(200), nullable=False)
+    role = db.Column(db.String(20), default="Renter") # Renter, Admin
+    first_name = db.Column(db.String(50))
+    last_name = db.Column(db.String(50))
+    mobile_number = db.Column(db.String(20))
+    is_verified = db.Column(db.Boolean, default=False)
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+
 class Booking(db.Model):
     id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     car_id = db.Column(db.Integer, db.ForeignKey('car.id'), nullable=False)
+
+    # Snapshot of renter info at time of booking
     first_name = db.Column(db.String(50), nullable=False)
     last_name = db.Column(db.String(50), nullable=False)
     email = db.Column(db.String(100), nullable=False)
     mobile = db.Column(db.String(20), nullable=False)
+
     pickup_location = db.Column(db.String(255), nullable=False)
     return_location = db.Column(db.String(255), nullable=False)
     pickup_datetime = db.Column(db.DateTime, nullable=False)
     return_datetime = db.Column(db.DateTime, nullable=False)
+
+    # New: Actual return for fine calculation
+    actual_return_datetime = db.Column(db.DateTime)
+
     total_amount = db.Column(db.Float, nullable=False)
-    status = db.Column(db.String(20), default="Pending") # Pending, Confirmed, Cancelled
+    late_fee = db.Column(db.Float, default=0.0)
+
+    # License images
+    license_front = db.Column(db.String(255))
+    license_back = db.Column(db.String(255))
+
+    # Status: Pending, Paid, Confirmed, PickedUp, Returned, Cancelled
+    status = db.Column(db.String(20), default="Pending")
+    rejection_reason = db.Column(db.Text)
+
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
 
     car = db.relationship('Car', backref=db.backref('bookings', lazy=True))
+    user = db.relationship('User', backref=db.backref('bookings', lazy=True))
 
 class AddOn(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -46,8 +75,15 @@ class AddOn(db.Model):
     price_per_day = db.Column(db.Integer, nullable=False)
     description = db.Column(db.Text)
 
-class User(db.Model, UserMixin):
+class ContactMessage(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    email = db.Column(db.String(100), unique=True, nullable=False)
-    password = db.Column(db.String(200), nullable=False)
-    role = db.Column(db.String(20), default="Renter") # Renter, Admin
+    name = db.Column(db.String(100))
+    email = db.Column(db.String(100))
+    subject = db.Column(db.String(150))
+    message = db.Column(db.Text)
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+
+class NewsletterSubscription(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    email = db.Column(db.String(100), unique=True)
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)

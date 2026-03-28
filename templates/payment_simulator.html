@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>PayMongo Simulator — DriveEase PH</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@400;700;800;900&family=Newsreader:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;600&family=DM+Mono&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <style>
+        .amber-gradient { background: linear-gradient(135deg, #fbbc00 0%, #ab7f00 100%); }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface">
+    <header class="bg-[#001F3F] text-white p-6 shadow-xl text-center">
+        <h1 class="text-2xl font-black font-headline text-[#fbbc00] uppercase tracking-tighter">PAYMONGO SIMULATOR</h1>
+    </header>
+    <main class="max-w-md mx-auto px-6 py-20 text-center">
+        <div class="bg-white p-10 rounded-3xl shadow-xl space-y-6">
+            <h2 class="font-headline text-3xl font-black text-primary uppercase tracking-tight">Payment #{{ booking.id }}</h2>
+            <div class="bg-surface-container-low p-6 rounded-2xl text-left space-y-4">
+                <div class="flex justify-between font-label text-sm uppercase tracking-widest font-bold">
+                    <span>Amount</span>
+                    <span class="text-on-primary-container">₱{{ "{:,.2f}".format(booking.total_amount) }}</span>
+                </div>
+            </div>
+            <p class="text-on-surface-variant italic text-sm">Select a simulated outcome:</p>
+            <div class="space-y-4">
+                <form action="{{ url_for('payment_confirm', booking_id=booking.id, status='success') }}" method="POST">
+                    <button type="submit" class="w-full bg-green-500 text-white py-4 rounded-xl font-headline font-bold uppercase tracking-widest hover:bg-green-600 transition-all shadow-lg active:scale-95">Simulate Success</button>
+                </form>
+                <form action="{{ url_for('payment_confirm', booking_id=booking.id, status='failed') }}" method="POST">
+                    <button type="submit" class="w-full bg-red-500 text-white py-4 rounded-xl font-headline font-bold uppercase tracking-widest hover:bg-red-600 transition-all shadow-lg active:scale-95">Simulate Failure</button>
+                </form>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

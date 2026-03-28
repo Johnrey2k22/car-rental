@@ -1,11 +1,13 @@
 <!DOCTYPE html>
-<html class="light" lang="en"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@400;700;800;900&amp;family=Newsreader:ital,wght@0,400;0,600;1,400&amp;family=Inter:wght@400;500;600&amp;family=DM+Mono&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<script id="tailwind-config">
+<html class="light" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>DriveEase PH | Booking {{ car.brand }} {{ car.model }}</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@400;700;800;900&family=Newsreader:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;600&family=DM+Mono&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <script id="tailwind-config">
         tailwind.config = {
             darkMode: "class",
             theme: {
@@ -69,144 +71,151 @@
             },
         }
     </script>
-<style>
-        .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-        }
-        .amber-gradient-btn {
-            background: linear-gradient(135deg, #fbbc00 0%, #ab7f00 100%);
-        }
+    <style>
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .amber-gradient-btn { background: linear-gradient(135deg, #fbbc00 0%, #ab7f00 100%); }
     </style>
 </head>
 <body class="bg-surface font-body text-on-surface">
-<!-- TopAppBar -->
-<nav class="bg-[#f9f9f9]/80 dark:bg-[#001F3F]/90 backdrop-blur-xl sticky top-0 z-50 shadow-[0_20px_40px_rgba(0,31,63,0.06)]">
-<div class="flex justify-between items-center w-full px-6 py-4 max-w-7xl mx-auto">
-<div class="flex items-center gap-4">
-<span class="material-symbols-outlined text-[#001F3F] dark:text-[#fbbc00]">menu</span>
-<a href="{{ url_for('home') }}" class="text-2xl font-black tracking-tighter text-[#001F3F] dark:text-[#fbbc00] font-headline uppercase">DriveEase PH</a>
-</div>
-<div class="hidden md:flex gap-8 items-center">
-<a class="text-[#001F3F] font-medium hover:text-[#ab7f00] transition-colors duration-300 font-headline tracking-tight uppercase" href="{{ url_for('fleet') }}">Fleet</a>
-<a class="text-[#fbbc00] font-bold hover:text-[#ab7f00] transition-colors duration-300 font-headline tracking-tight uppercase" href="{{ url_for('dashboard') }}">Bookings</a>
-<a class="text-[#001F3F] font-medium hover:text-[#ab7f00] transition-colors duration-300 font-headline tracking-tight uppercase" href="#">Concierge</a>
-{% if current_user.is_authenticated %}
-<a href="{{ url_for('logout') }}" class="text-xs font-bold uppercase tracking-widest text-on-surface-variant">Logout</a>
-{% else %}
-<a href="{{ url_for('login') }}" class="text-xs font-bold uppercase tracking-widest text-on-surface-variant">Login</a>
-{% endif %}
-</div>
-</div>
-</nav>
-<main class="max-w-7xl mx-auto px-6 py-12">
-<form method="POST" class="flex flex-col lg:flex-row gap-10">
-<!-- Left Column: Form -->
-<div class="flex-1 space-y-8">
-<!-- Section 1: Rental Details -->
-<section class="bg-surface-container-low p-8 rounded-xl">
-<div class="flex items-center gap-4 mb-8">
-<div class="w-8 h-8 rounded-full bg-primary-fixed-dim flex items-center justify-center text-on-primary-fixed font-headline font-bold">1</div>
-<h2 class="font-headline text-xl font-bold uppercase tracking-tight">Rental Details</h2>
-</div>
-<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-<div class="space-y-1">
-<label class="font-label text-[10px] uppercase tracking-widest text-on-surface-variant ml-1">Pickup Location</label>
-<input name="pickup_location" class="w-full bg-surface-container-high border-none border-b-2 border-transparent focus:border-primary-fixed-dim focus:ring-0 px-4 py-3 rounded-t-lg font-body" type="text" value="Ninoy Aquino International Airport (T3)"/>
-</div>
-<div class="space-y-1">
-<label class="font-label text-[10px] uppercase tracking-widest text-on-surface-variant ml-1">Return Location</label>
-<input name="return_location" class="w-full bg-surface-container-high border-none border-b-2 border-transparent focus:border-primary-fixed-dim focus:ring-0 px-4 py-3 rounded-t-lg font-body" type="text" value="Ninoy Aquino International Airport (T3)"/>
-</div>
-<div class="space-y-1">
-<label class="font-label text-[10px] uppercase tracking-widest text-on-surface-variant ml-1">Pickup Datetime</label>
-<input name="pickup_datetime" class="w-full bg-surface-container-high border-none border-b-2 border-transparent focus:border-primary-fixed-dim focus:ring-0 px-4 py-3 rounded-t-lg font-body" type="datetime-local" required/>
-</div>
-<div class="space-y-1">
-<label class="font-label text-[10px] uppercase tracking-widest text-on-surface-variant ml-1">Return Datetime</label>
-<input name="return_datetime" class="w-full bg-surface-container-high border-none border-b-2 border-transparent focus:border-primary-fixed-dim focus:ring-0 px-4 py-3 rounded-t-lg font-body" type="datetime-local" required/>
-</div>
-</div>
-</section>
-<!-- Section 2: Renter Information -->
-<section class="bg-surface-container-low p-8 rounded-xl">
-<div class="flex items-center gap-4 mb-8">
-<div class="w-8 h-8 rounded-full bg-primary-fixed-dim flex items-center justify-center text-on-primary-fixed font-headline font-bold">2</div>
-<h2 class="font-headline text-xl font-bold uppercase tracking-tight">Renter Information</h2>
-</div>
-<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-<div class="space-y-1">
-<label class="font-label text-[10px] uppercase tracking-widest text-on-surface-variant ml-1">First Name</label>
-<input name="first_name" class="w-full bg-surface-container-high border-none border-b-2 border-transparent focus:border-primary-fixed-dim focus:ring-0 px-4 py-3 rounded-t-lg font-body" placeholder="John" type="text" required/>
-</div>
-<div class="space-y-1">
-<label class="font-label text-[10px] uppercase tracking-widest text-on-surface-variant ml-1">Last Name</label>
-<input name="last_name" class="w-full bg-surface-container-high border-none border-b-2 border-transparent focus:border-primary-fixed-dim focus:ring-0 px-4 py-3 rounded-t-lg font-body" placeholder="Doe" type="text" required/>
-</div>
-<div class="space-y-1">
-<label class="font-label text-[10px] uppercase tracking-widest text-on-surface-variant ml-1">Mobile Number</label>
-<input name="mobile" class="w-full bg-surface-container-high border-none border-b-2 border-transparent focus:border-primary-fixed-dim focus:ring-0 px-4 py-3 rounded-t-lg font-body" placeholder="+63 912 345 6789" type="tel" required/>
-</div>
-<div class="space-y-1">
-<label class="font-label text-[10px] uppercase tracking-widest text-on-surface-variant ml-1">Email Address</label>
-<input name="email" class="w-full bg-surface-container-high border-none border-b-2 border-transparent focus:border-primary-fixed-dim focus:ring-0 px-4 py-3 rounded-t-lg font-body" placeholder="john.doe@example.com" type="email" value="{{ current_user.email }}" required/>
-</div>
-</div>
-</section>
-<!-- Section 3: Add-ons & Extras -->
-<section class="bg-surface-container-low p-8 rounded-xl">
-<div class="flex items-center gap-4 mb-8">
-<div class="w-8 h-8 rounded-full bg-primary-fixed-dim flex items-center justify-center text-on-primary-fixed font-headline font-bold">3</div>
-<h2 class="font-headline text-xl font-bold uppercase tracking-tight">Add-ons &amp; Extras</h2>
-</div>
-<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-{% for addon in addons %}
-<label class="bg-surface-container-lowest p-5 rounded-xl flex items-start gap-4 cursor-pointer hover:bg-secondary-container transition-colors group">
-<input type="checkbox" name="addons" value="{{ addon.id }}" class="hidden peer"/>
-<div class="mt-1">
-<span class="material-symbols-outlined text-primary-fixed-dim group-hover:text-on-secondary-container">add_circle</span>
-</div>
-<div class="flex-1">
-<h3 class="font-headline font-bold text-sm uppercase tracking-tight">{{ addon.name }}</h3>
-<p class="text-xs text-on-surface-variant italic mb-2">{{ addon.description }}</p>
-<span class="font-label text-[10px] font-bold text-on-primary-container">₱{{ addon.price_per_day }} / DAY</span>
-</div>
-<div class="w-5 h-5 rounded border-2 border-outline-variant peer-checked:bg-primary-fixed-dim peer-checked:border-primary-fixed-dim flex items-center justify-center transition-all">
-<span class="material-symbols-outlined text-[14px] text-white" style="font-variation-settings: 'FILL' 1;">check</span>
-</div>
-</label>
-{% endfor %}
-</div>
-</section>
-</div>
-<!-- Right Column: Sticky Sidebar -->
-<aside class="w-full lg:w-[360px]">
-<div class="sticky top-28 space-y-6">
-<div class="bg-surface-container-lowest rounded-xl shadow-[0_20px_40px_rgba(0,31,63,0.06)] overflow-hidden">
-<div class="aspect-[16/9] bg-surface-container-highest">
-<img alt="{{ car.brand }} {{ car.model }}" class="w-full h-full object-cover" src="{{ car.image_url }}"/>
-</div>
-<div class="p-6 space-y-6">
-<div>
-<h3 class="font-headline text-xl font-black uppercase tracking-tighter text-primary">{{ car.brand }} {{ car.model }}</h3>
-<p class="font-label text-[10px] uppercase tracking-[0.2em] text-on-surface-variant mt-1">{{ car.category }} • {{ car.transmission }}</p>
-</div>
-<div class="space-y-3">
-<div class="flex justify-between items-center">
-<span class="font-body text-sm">Base Rate</span>
-<span class="font-label text-sm">₱{{ "{:,.0f}".format(car.daily_rate) }} / day</span>
-</div>
-<div class="pt-4 mt-2 border-t border-surface-variant flex justify-between items-end">
-<span class="font-headline font-bold uppercase text-xs tracking-widest">Total Estimated</span>
-<span class="font-headline font-black text-2xl text-on-primary-container">₱--</span>
-</div>
-</div>
-<button type="submit" class="w-full amber-gradient-btn text-white py-4 rounded-full font-label text-xs font-black tracking-[0.2em] uppercase active:scale-95 transition-all">
-                                Confirm Booking
-                            </button>
-</div>
-</div>
-</div>
-</aside>
-</form>
-</main>
-</body></html>
+    <nav class="bg-[#f9f9f9]/80 backdrop-blur-xl sticky top-0 z-50 shadow-sm">
+        <div class="flex justify-between items-center w-full px-6 py-4 max-w-7xl mx-auto">
+            <div class="flex items-center gap-4">
+                <a href="{{ url_for('home') }}" class="text-2xl font-black tracking-tighter text-[#001F3F] font-headline uppercase">DriveEase PH</a>
+            </div>
+        </div>
+    </nav>
+    <main class="max-w-7xl mx-auto px-6 py-12">
+        <form method="POST" enctype="multipart/form-data">
+            <div class="flex flex-col lg:flex-row gap-10">
+                <div class="flex-1 space-y-8">
+                    <section class="bg-surface-container-low p-8 rounded-xl">
+                        <h2 class="font-headline text-xl font-bold uppercase tracking-tight mb-6">1. Rental Details</h2>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <input name="pickup_location" placeholder="Pickup Location" required class="w-full bg-surface-container-high border-none p-4 rounded-xl font-body" type="text" value="Manila Airport"/>
+                            <input name="return_location" placeholder="Return Location" required class="w-full bg-surface-container-high border-none p-4 rounded-xl font-body" type="text" value="Manila Airport"/>
+                            <input name="pickup_datetime" id="pickup_dt" required class="w-full bg-surface-container-high border-none p-4 rounded-xl font-body" type="datetime-local"/>
+                            <input name="return_datetime" id="return_dt" required class="w-full bg-surface-container-high border-none p-4 rounded-xl font-body" type="datetime-local"/>
+                        </div>
+                    </section>
+
+                    <section class="bg-surface-container-low p-8 rounded-xl">
+                        <h2 class="font-headline text-xl font-bold uppercase tracking-tight mb-6">2. Renter Information</h2>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <input name="first_name" required class="w-full bg-surface-container-high border-none p-4 rounded-xl font-body" value="{{ current_user.first_name }}" type="text" placeholder="First Name"/>
+                            <input name="last_name" required class="w-full bg-surface-container-high border-none p-4 rounded-xl font-body" value="{{ current_user.last_name }}" type="text" placeholder="Last Name"/>
+                            <input name="mobile" required class="w-full bg-surface-container-high border-none p-4 rounded-xl font-body" value="{{ current_user.mobile_number }}" type="tel" placeholder="Mobile Number"/>
+                            <input name="email" required class="w-full bg-surface-container-high border-none p-4 rounded-xl font-body" value="{{ current_user.email }}" type="email" placeholder="Email"/>
+                        </div>
+                    </section>
+
+                    <section class="bg-surface-container-low p-8 rounded-xl">
+                        <h2 class="font-headline text-xl font-bold uppercase tracking-tight mb-6">3. Add-ons</h2>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            {% for addon in addons %}
+                            <label class="bg-white p-4 rounded-xl flex items-center gap-4 cursor-pointer hover:bg-gray-50 transition-colors">
+                                <input type="checkbox" name="addons" value="{{ addon.id }}" data-price="{{ addon.price_per_day }}" class="w-5 h-5 rounded border-gray-300 text-[#fbbc00] focus:ring-[#fbbc00]">
+                                <div>
+                                    <p class="font-headline font-bold text-sm uppercase">{{ addon.name }}</p>
+                                    <p class="text-[10px] text-gray-500">₱{{ addon.price_per_day }} / day</p>
+                                </div>
+                            </label>
+                            {% endfor %}
+                        </div>
+                    </section>
+
+                    <section class="bg-surface-container-low p-8 rounded-xl">
+                        <h2 class="font-headline text-xl font-bold uppercase tracking-tight mb-6">4. Driver's License</h2>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-[10px] font-bold uppercase tracking-widest text-gray-500 mb-2">Front View</label>
+                                <input type="file" name="license_front" required class="w-full text-xs" accept="image/*">
+                            </div>
+                            <div>
+                                <label class="block text-[10px] font-bold uppercase tracking-widest text-gray-500 mb-2">Back View</label>
+                                <input type="file" name="license_back" required class="w-full text-xs" accept="image/*">
+                            </div>
+                        </div>
+                    </section>
+                </div>
+
+                <aside class="w-full lg:w-[360px]">
+                    <div class="sticky top-28 bg-white p-8 rounded-3xl shadow-xl border border-surface-container space-y-6">
+                        <img src="{{ car.image_url }}" class="w-full aspect-video object-cover rounded-2xl mb-4">
+                        <h3 class="font-headline text-2xl font-black uppercase text-primary">{{ car.brand }} {{ car.model }}</h3>
+                        <div class="space-y-4 py-4 border-y border-gray-100">
+                            <div class="flex justify-between text-sm">
+                                <span class="text-gray-500">Duration</span>
+                                <span id="duration_text" class="font-bold">1 Day(s)</span>
+                            </div>
+                            <div class="flex justify-between text-sm">
+                                <span class="text-gray-500">Base Rental</span>
+                                <span id="base_price_display" class="font-bold">₱0.00</span>
+                            </div>
+                            <div class="flex justify-between text-sm">
+                                <span class="text-gray-500">Add-ons Total</span>
+                                <span id="addons_price_display" class="font-bold">₱0.00</span>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-end">
+                            <span class="text-[10px] font-bold uppercase tracking-widest text-gray-400">Total Price</span>
+                            <span id="total_price_display" class="font-headline font-black text-3xl text-[#ab7f00]">₱0.00</span>
+                        </div>
+                        <button type="submit" class="w-full amber-gradient-btn text-white py-5 rounded-full font-headline font-black text-sm tracking-widest uppercase shadow-lg hover:shadow-xl transition-all active:scale-95">
+                            Proceed to Payment
+                        </button>
+                    </div>
+                </aside>
+            </div>
+        </form>
+    </main>
+
+    <script>
+        const dailyRate = {{ car.daily_rate }};
+        const pickupInput = document.getElementById('pickup_dt');
+        const returnInput = document.getElementById('return_dt');
+        const addonCheckboxes = document.querySelectorAll('input[name="addons"]');
+
+        function updatePrices() {
+            const pickup = new Date(pickupInput.value);
+            const returnDate = new Date(returnInput.value);
+
+            if (pickup && returnDate && returnDate > pickup) {
+                const diffTime = Math.abs(returnDate - pickup);
+                const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) || 1;
+
+                document.getElementById('duration_text').innerText = `${diffDays} Day(s)`;
+
+                const basePrice = dailyRate * diffDays;
+                document.getElementById('base_price_display').innerText = '₱' + basePrice.toLocaleString();
+
+                let addonsTotal = 0;
+                addonCheckboxes.forEach(cb => {
+                    if (cb.checked) {
+                        addonsTotal += parseFloat(cb.dataset.price) * diffDays;
+                    }
+                });
+                document.getElementById('addons_price_display').innerText = '₱' + addonsTotal.toLocaleString();
+
+                const total = basePrice + addonsTotal;
+                document.getElementById('total_price_display').innerText = '₱' + total.toLocaleString();
+            }
+        }
+
+        pickupInput.addEventListener('change', updatePrices);
+        returnInput.addEventListener('change', updatePrices);
+        addonCheckboxes.forEach(cb => cb.addEventListener('change', updatePrices));
+
+        const now = new Date();
+        now.setMinutes(0);
+        now.setSeconds(0);
+        now.setMilliseconds(0);
+        pickupInput.value = now.toISOString().slice(0, 16);
+
+        const tomorrow = new Date(now);
+        tomorrow.setDate(tomorrow.getDate() + 1);
+        returnInput.value = tomorrow.toISOString().slice(0, 16);
+
+        updatePrices();
+    </script>
+</body>
+</html>

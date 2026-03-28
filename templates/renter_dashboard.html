@@ -1,74 +1,124 @@
 <!DOCTYPE html>
-<html class="light" lang="en"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@400;700;800;900&amp;family=Newsreader:ital,wght@0,400;0,600;1,400&amp;family=Inter:wght@400;500;600&amp;family=DM+Mono&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<style>
-    .amber-gradient-btn {
-        background: linear-gradient(135deg, #fbbc00 0%, #ab7f00 100%);
-    }
-</style>
+<html class="light" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>My Reservations | DriveEase PH</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@400;700;800;900&family=Newsreader:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;600&family=DM+Mono&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <style>
+        .amber-gradient-btn { background: linear-gradient(135deg, #fbbc00 0%, #ab7f00 100%); }
+    </style>
 </head>
 <body class="bg-surface font-body text-on-surface">
-<nav class="bg-[#f9f9f9]/80 dark:bg-[#001F3F]/90 backdrop-blur-xl sticky top-0 z-50 shadow-sm">
-    <div class="flex justify-between items-center w-full px-6 py-4 max-w-7xl mx-auto">
-        <div class="flex items-center gap-4">
-            <a href="{{ url_for('home') }}" class="text-2xl font-black tracking-tighter text-[#001F3F] dark:text-[#fbbc00] font-headline uppercase">DriveEase PH</a>
+    <nav class="bg-[#f9f9f9]/80 backdrop-blur-xl sticky top-0 z-50 shadow-sm border-b border-surface-container">
+        <div class="flex justify-between items-center w-full px-6 py-4 max-w-7xl mx-auto">
+            <div class="flex items-center gap-4">
+                <a href="{{ url_for('home') }}" class="text-2xl font-black tracking-tighter text-[#001F3F] font-headline uppercase">DriveEase PH</a>
+            </div>
+            <div class="hidden md:flex gap-8 items-center font-headline font-bold text-xs uppercase tracking-widest">
+                <a class="text-[#001F3F]/60 hover:text-[#ab7f00]" href="{{ url_for('fleet') }}">Fleet</a>
+                <a class="text-[#fbbc00]" href="{{ url_for('dashboard') }}">My Bookings</a>
+                <a href="{{ url_for('logout') }}" class="text-[#001F3F]/60 hover:text-red-600">Logout</a>
+            </div>
         </div>
-        <div class="hidden md:flex gap-8 items-center">
-            <a class="text-[#001F3F] font-medium hover:text-[#ab7f00] font-headline tracking-tight uppercase" href="{{ url_for('fleet') }}">Fleet</a>
-            <a class="text-[#fbbc00] font-bold font-headline tracking-tight uppercase" href="{{ url_for('dashboard') }}">My Bookings</a>
-            <a href="{{ url_for('logout') }}" class="text-xs font-bold uppercase tracking-widest text-on-surface-variant">Logout</a>
-        </div>
-    </div>
-</nav>
-<main class="max-w-7xl mx-auto px-6 py-12">
-    <h1 class="font-headline text-4xl font-black text-primary mb-8 uppercase tracking-tighter">My Reservations</h1>
-    
-    <div class="grid grid-cols-1 gap-6">
-        {% if bookings %}
-            {% for booking in bookings %}
-            <div class="bg-white rounded-3xl p-8 shadow-sm border border-outline-variant/20 flex flex-col md:flex-row gap-8 items-center">
-                <div class="w-full md:w-48 aspect-video rounded-2xl overflow-hidden bg-surface-container">
-                    <img src="{{ booking.car.image_url }}" class="w-full h-full object-cover"/>
+    </nav>
+
+    <main class="max-w-5xl mx-auto px-6 py-12">
+        <div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
+            <div>
+                <h1 class="font-headline text-5xl font-black text-primary uppercase tracking-tighter mb-2">My Journey</h1>
+                <p class="text-on-surface-variant font-body italic">Manage your premium rentals and verification status.</p>
+            </div>
+            <div class="flex items-center gap-4 bg-white px-6 py-3 rounded-2xl shadow-sm border border-surface-container">
+                <div class="w-10 h-10 rounded-full {% if current_user.is_verified %}bg-green-100 text-green-700{% else %}bg-amber-100 text-amber-700{% endif %} flex items-center justify-center">
+                    <span class="material-symbols-outlined text-xl">{% if current_user.is_verified %}verified{% else %}pending_actions{% endif %}</span>
                 </div>
-                <div class="flex-1">
-                    <div class="flex justify-between items-start mb-4">
-                        <div>
-                            <h3 class="font-headline text-xl font-bold text-primary">{{ booking.car.brand }} {{ booking.car.model }}</h3>
-                            <p class="text-xs text-on-surface-variant uppercase tracking-widest">{{ booking.pickup_datetime.strftime('%b %d') }} – {{ booking.return_datetime.strftime('%b %d, %Y') }}</p>
-                        </div>
-                        <span class="px-4 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest 
+                <div>
+                    <p class="font-label text-[10px] font-bold uppercase tracking-widest text-on-surface-variant">Profile Status</p>
+                    <p class="font-headline font-bold text-sm">{% if current_user.is_verified %}Fully Verified{% else %}Verification Pending{% endif %}</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="space-y-8">
+            {% if bookings %}
+                {% for booking in bookings %}
+                <div class="bg-white rounded-[2rem] p-8 shadow-sm border border-surface-container hover:shadow-xl transition-all duration-500 overflow-hidden relative group">
+                    <!-- Status Badge -->
+                    <div class="absolute top-0 right-0">
+                        <span class="px-8 py-2 rounded-bl-3xl text-[10px] font-black font-label uppercase tracking-[0.2em] shadow-sm
                             {% if booking.status == 'Pending' %}bg-amber-100 text-amber-700
+                            {% elif booking.status == 'Paid' %}bg-blue-100 text-blue-700
                             {% elif booking.status == 'Confirmed' %}bg-green-100 text-green-700
-                            {% else %}bg-red-100 text-red-700{% endif %}">
+                            {% elif booking.status == 'PickedUp' %}bg-purple-100 text-purple-700
+                            {% elif booking.status == 'Returned' %}bg-gray-100 text-gray-700
+                            {% elif booking.status == 'Cancelled' %}bg-red-100 text-red-700{% endif %}">
                             {{ booking.status }}
                         </span>
                     </div>
-                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                        <div>
-                            <p class="text-[10px] font-bold text-on-surface-variant uppercase">Total Amount</p>
-                            <p class="font-headline font-bold text-lg">₱{{ "{:,.2f}".format(booking.total_amount) }}</p>
+
+                    <div class="flex flex-col lg:flex-row gap-10 items-center">
+                        <div class="w-full lg:w-64 aspect-[4/3] rounded-3xl overflow-hidden bg-surface-container-low shadow-inner">
+                            <img src="{{ booking.car.image_url }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"/>
                         </div>
-                        <div>
-                            <p class="text-[10px] font-bold text-on-surface-variant uppercase">Pickup</p>
-                            <p class="text-sm italic">{{ booking.pickup_location }}</p>
+
+                        <div class="flex-1 w-full">
+                            <div class="mb-6">
+                                <h3 class="font-headline text-2xl font-black text-primary uppercase tracking-tight mb-1">{{ booking.car.brand }} {{ booking.car.model }}</h3>
+                                <p class="font-label text-xs font-bold text-[#ab7f00] uppercase tracking-widest">{{ booking.pickup_datetime.strftime('%B %d, %H:%M') }} – {{ booking.return_datetime.strftime('%B %d, %Y (%H:%M)') }}</p>
+                            </div>
+
+                            <div class="grid grid-cols-2 md:grid-cols-3 gap-6 mb-6">
+                                <div>
+                                    <p class="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest mb-1">Total Paid</p>
+                                    <p class="font-headline font-bold text-lg">₱{{ "{:,.2f}".format(booking.total_amount) }}</p>
+                                </div>
+                                <div>
+                                    <p class="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest mb-1">Pick-up Location</p>
+                                    <p class="text-xs italic font-medium leading-snug">{{ booking.pickup_location }}</p>
+                                </div>
+                                {% if booking.late_fee > 0 %}
+                                <div class="bg-red-50 p-3 rounded-xl border border-red-100">
+                                    <p class="text-[10px] font-bold text-red-700 uppercase tracking-widest mb-1">Late Fee Applied</p>
+                                    <p class="font-headline font-bold text-lg text-red-700">₱{{ "{:,.2f}".format(booking.late_fee) }}</p>
+                                </div>
+                                {% endif %}
+                            </div>
+
+                            {% if booking.status == 'Cancelled' and booking.rejection_reason %}
+                            <div class="bg-red-50 p-4 rounded-2xl border border-red-200 flex gap-4 items-start">
+                                <span class="material-symbols-outlined text-red-600 mt-0.5">feedback</span>
+                                <div>
+                                    <p class="font-label text-[10px] font-bold text-red-800 uppercase tracking-widest mb-1">Verification Feedback</p>
+                                    <p class="text-sm font-body italic text-red-700 leading-relaxed">"{{ booking.rejection_reason }}"</p>
+                                </div>
+                            </div>
+                            {% endif %}
+
+                            {% if booking.status == 'Paid' %}
+                            <div class="bg-blue-50 p-4 rounded-2xl border border-blue-200 flex gap-4 items-start">
+                                <span class="material-symbols-outlined text-blue-600 animate-pulse">id_card</span>
+                                <div>
+                                    <p class="font-label text-[10px] font-bold text-blue-800 uppercase tracking-widest mb-1">Verification Status</p>
+                                    <p class="text-sm font-body italic text-blue-700 leading-relaxed">Our fleet managers are currently reviewing your license documentation. Please check back shortly.</p>
+                                </div>
+                            </div>
+                            {% endif %}
                         </div>
                     </div>
                 </div>
-                <div class="flex gap-2">
-                    <button class="px-6 py-3 rounded-full border border-outline-variant text-xs font-bold uppercase tracking-widest hover:bg-surface-container transition-colors">Details</button>
+                {% endfor %}
+            {% else %}
+                <div class="text-center py-24 bg-surface-container-low rounded-[3rem] border-2 border-dashed border-surface-container">
+                    <span class="material-symbols-outlined text-7xl text-on-surface-variant/20 mb-6">explore</span>
+                    <h2 class="font-headline text-2xl font-bold text-primary uppercase mb-2">No active journeys</h2>
+                    <p class="text-on-surface-variant italic mb-8">Your next premium adventure is just a few clicks away.</p>
+                    <a href="{{ url_for('fleet') }}" class="inline-block amber-gradient-btn text-on-tertiary-fixed px-10 py-4 rounded-full font-headline font-black text-xs tracking-widest uppercase shadow-lg hover:scale-105 active:scale-95 transition-all">Discover Our Fleet</a>
                 </div>
-            </div>
-            {% endfor %}
-        {% else %}
-            <div class="text-center py-20 bg-surface-container-low rounded-3xl">
-                <span class="material-symbols-outlined text-6xl text-on-surface-variant/30 mb-4">directions_car</span>
-                <p class="text-on-surface-variant italic">No reservations found. <a href="{{ url_for('fleet') }}" class="text-primary font-bold not-italic underline">Book your first ride today.</a></p>
-            </div>
-        {% endif %}
-    </div>
-</main>
-</body></html>
+            {% endif %}
+        </div>
+    </main>
+</body>
+</html>

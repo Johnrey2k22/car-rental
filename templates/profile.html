@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>My Profile | DriveEase PH</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@400;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+</head>
+<body class="bg-surface font-body">
+    <nav class="bg-[#001F3F] text-white p-6">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <a href="{{ url_for('home') }}" class="text-xl font-black uppercase">DriveEase PH</a>
+            <a href="{{ url_for('dashboard') }}" class="text-xs font-bold uppercase tracking-widest">Back to Dashboard</a>
+        </div>
+    </nav>
+    <main class="max-w-2xl mx-auto py-20 px-6">
+        <div class="bg-white p-10 rounded-3xl shadow-xl">
+            <h1 class="text-3xl font-black font-headline uppercase mb-8">Account Profile</h1>
+            <form method="POST">
+                <div class="space-y-6">
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-1">First Name</label>
+                            <input type="text" name="first_name" value="{{ current_user.first_name }}" class="w-full bg-gray-50 border-none rounded-xl p-4">
+                        </div>
+                        <div>
+                            <label class="block text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-1">Last Name</label>
+                            <input type="text" name="last_name" value="{{ current_user.last_name }}" class="w-full bg-gray-50 border-none rounded-xl p-4">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-1">Mobile Number</label>
+                        <input type="tel" name="mobile" value="{{ current_user.mobile_number }}" class="w-full bg-gray-50 border-none rounded-xl p-4">
+                    </div>
+                    <div>
+                        <label class="block text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-1">Email (Read Only)</label>
+                        <input type="email" value="{{ current_user.email }}" disabled class="w-full bg-gray-100 border-none rounded-xl p-4 text-gray-500">
+                    </div>
+                    <button type="submit" class="w-full bg-[#fbbc00] text-[#001F3F] py-4 rounded-xl font-bold uppercase tracking-widest shadow-lg">Update Profile</button>
+                </div>
+            </form>
+        </div>
+    </main>
+</body>
+</html>
