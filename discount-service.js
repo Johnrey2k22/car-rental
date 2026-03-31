@@ -105,7 +105,7 @@ function getAvailablePromotions() {
 }
 
 function describeBooking(booking) {
-  const { baseRate, days, customer = {}, promoCode = '' } = booking;
+  const { baseRate = 0, days = 0, customer = {}, promoCode = '' } = booking;
   const result = calculateDiscounts({ baseRate, days, promoCode, customer });
 
   return {
