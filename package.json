@@ -1,0 +1,10 @@
+{
+  "name": "car-rental-discount-service",
+  "version": "1.0.0",
+  "private": true,
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "node -e \"const { describeBooking } = require('./discount-service'); console.log(JSON.stringify(describeBooking({ baseRate: 60, days: 3, promoCode: 'WEEKEND5', customer: { status: 'new' } }), null, 2));\""
+  }
+}
